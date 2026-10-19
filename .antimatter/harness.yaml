@@ -1,0 +1,27 @@
+# Antimatter harness — Self-Harness loop (arXiv:2606.09498)
+# Workspace-wide self-improve settings. Per-model mediation lives in harness/models/<modelId>.yaml
+harness:
+  trace_enabled: true
+  auto_suggest_rules: true
+  self_improve_enabled: true
+  auto_promote: true
+  max_improvement_iterations: 3
+  candidates_per_iteration: 3
+  min_tag_count: 2
+
+loop_guard:
+  exact_threshold: 2
+  read_starvation_threshold: 4
+  freq_threshold: 8
+
+compaction:
+  keep_verbatim_tail: 8
+
+tool_policies:
+  read_max_per_turn: 0
+  write_requires_prior_read: true
+  block_missing_path_retry: true
+  claim_gate_enabled: true
+  edit_must_write: true
+  verify_mutation_before_done: true
+  bash_max_per_turn: 0

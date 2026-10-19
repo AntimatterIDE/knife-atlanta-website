@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "lastGreen": {
+    "command": "npx tsc --noEmit",
+    "label": "tsc --noEmit",
+    "kind": "typecheck",
+    "at": 1792361577803
+  },
+  "updatedAt": 1792361577803
+}

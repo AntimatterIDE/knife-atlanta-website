@@ -1,0 +1,31 @@
+{
+  "name": "Knife",
+  "city": "Atlanta",
+  "tagline": "An American Steakhouse",
+  "description": "Knife is Atlanta's premier modern steakhouse — dry-aged beef, live-fire cooking, and an editorial dining room in the heart of Buckhead.",
+  "phone": "(404) 460-8623",
+  "phoneHref": "+14044608623",
+  "email": "reservations@knifeatlanta.com",
+  "address": {
+    "line1": "3010 Peachtree Rd NE",
+    "line2": "Atlanta, GA 30305",
+    "mapQuery": "Knife Atlanta 3010 Peachtree Rd NE Atlanta GA 30305"
+  },
+  "reservationUrl": "https://www.opentable.com/knife-atlanta",
+  "social": {
+    "instagram": "https://instagram.com/knifeatlanta",
+    "facebook": "https://facebook.com/knifeatlanta"
+  },
+  "hours": [
+    { "days": "Monday – Thursday", "time": "5:00 PM – 10:00 PM" },
+    { "days": "Friday – Saturday", "time": "5:00 PM – 11:00 PM" },
+    { "days": "Sunday", "time": "5:00 PM – 9:00 PM" }
+  ],
+  "nav": [
+    { "label": "Story", "href": "/story" },
+    { "label": "Menu", "href": "/menu" },
+    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Private Dining", "href": "/private-dining" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}

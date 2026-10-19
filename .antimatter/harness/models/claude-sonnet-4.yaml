@@ -1,0 +1,17 @@
+# Per-model harness overlay — claude-sonnet-4
+# Merged on top of workspace harness.yaml at runtime (Self-Harness promotions land here).
+
+loop_guard:
+  exact_threshold: 2
+
+compaction:
+  keep_verbatim_tail: 8
+
+tool_policies:
+  read_max_per_turn: 0
+  write_requires_prior_read: true
+  block_missing_path_retry: true
+  claim_gate_enabled: true
+  edit_must_write: true
+  verify_mutation_before_done: true
+  bash_max_per_turn: 0

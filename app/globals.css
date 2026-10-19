@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --knife-black:    #0a0906;
+  --knife-charcoal: #141210;
+  --knife-smoke:    #1e1c19;
+  --knife-ash:      #2c2926;
+  --knife-warm:     #3d3830;
+  --knife-mist:     #8a7f72;
+  --knife-cream:    #e8e0d5;
+  --knife-parchment:#f2ece3;
+  --knife-gold:     #c9a84c;
+  --knife-amber:    #b8860b;
+  --knife-copper:   #a0522d;
+  --knife-white:    #faf8f5;
+
+  --background: var(--knife-black);
+  --foreground: var(--knife-cream);
+
+  --text-display:  clamp(3.5rem, 10vw, 9rem);
+  --text-headline: clamp(2.25rem, 6vw, 5.5rem);
+  --text-title:    clamp(1.75rem, 4vw, 3rem);
+  --text-subtitle: clamp(1.1rem, 2.5vw, 1.6rem);
+  --text-body:     clamp(0.9375rem, 1.2vw, 1.0625rem);
+  --text-caption:  clamp(0.7rem, 0.9vw, 0.8rem);
+
+  --section-py: clamp(4.5rem, 12vw, 9rem);
+  --section-px: clamp(1.25rem, 6vw, 6rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold:       var(--knife-gold);
+  --color-amber:      var(--knife-amber);
+  --color-mist:       var(--knife-mist);
+  --color-cream:      var(--knife-cream);
+  --color-smoke:      var(--knife-smoke);
+  --color-ash:        var(--knife-ash);
+  --color-charcoal:   var(--knife-charcoal);
+  --font-display: var(--font-cormorant);
+  --font-sans:    var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--knife-black);
+  color: var(--knife-cream);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--knife-black);
+  color: var(--knife-cream);
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--knife-gold); color: var(--knife-black); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--knife-black); }
+::-webkit-scrollbar-thumb { background: var(--knife-ash); border-radius: 2px; }
+
+.font-display { font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif; }
+.font-sans    { font-family: var(--font-inter), 'Inter', system-ui, sans-serif; }
+
+.text-display  { font-size: var(--text-display);  line-height: 0.92; letter-spacing: -0.02em; }
+.text-headline { font-size: var(--text-headline); line-height: 0.96; letter-spacing: -0.015em; }
+.text-title    { font-size: var(--text-title);    line-height: 1.05; letter-spacing: -0.01em; }
+.text-subtitle { font-size: var(--text-subtitle); line-height: 1.25; }
+.text-body-lg  { font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.7; }
+.text-caption  { font-size: var(--text-caption); letter-spacing: 0.14em; text-transform: uppercase; }
+
+.section-padding {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  padding-left: var(--section-px);
+  padding-right: var(--section-px);
+}
+
+.gold-rule {
+  width: 3rem;
+  height: 1px;
+  background: var(--knife-gold);
+}
+
+.knife-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--knife-ash) 20%, var(--knife-ash) 80%, transparent);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.img-fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.overlay-dark {
+  background: linear-gradient(to bottom, rgba(10,9,6,0.25) 0%, rgba(10,9,6,0.55) 55%, rgba(10,9,6,0.95) 100%);
+}
+.overlay-left {
+  background: linear-gradient(to right, rgba(10,9,6,0.92) 0%, rgba(10,9,6,0.5) 55%, transparent 100%);
+}
+.overlay-full {
+  background: rgba(10,9,6,0.55);
+}
+
+.text-stroke-gold {
+  -webkit-text-stroke: 1px var(--knife-gold);
+  color: transparent;
+}
+
+@media (hover: hover) {
+  .link-underline { position: relative; }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
 }

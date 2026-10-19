@@ -1,0 +1,53 @@
+{
+  "categories": [
+    {
+      "id": "steaks",
+      "label": "Steaks",
+      "intro": "Dry-aged in house, finished over live fire. Served with choice of two sauces.",
+      "items": [
+        { "name": "Bone-In Filet", "desc": "8oz, center-cut, 28-day dry-aged", "price": "68" },
+        { "name": "New York Strip", "desc": "16oz, hand-selected prime", "price": "72" },
+        { "name": "Ribeye", "desc": "22oz, bone-in, 45-day dry-aged", "price": "86" },
+        { "name": "Porterhouse for Two", "desc": "40oz, tableside carving", "price": "168" },
+        { "name": "Wagyu Strip", "desc": "A5 Japanese, 6oz", "price": "145" },
+        { "name": "Tomahawk", "desc": "36oz, 40-day dry-aged, serves two", "price": "155" }
+      ]
+    },
+    {
+      "id": "seafood",
+      "label": "Seafood",
+      "intro": "Daily boat-to-table selections and chilled classics.",
+      "items": [
+        { "name": "Chilled Seafood Tower", "desc": "Oysters, shrimp, crab, lobster", "price": "95" },
+        { "name": "Scottish Salmon", "desc": "Crisp skin, citrus beurre blanc", "price": "48" },
+        { "name": "Jumbo Lump Crab Cake", "desc": "Whole grain mustard, remoulade", "price": "42" },
+        { "name": "Butter-Poached Lobster Tail", "desc": "8oz, drawn butter", "price": "74" },
+        { "name": "Seared Diver Scallops", "desc": "Brown butter, sea beans", "price": "52" }
+      ]
+    },
+    {
+      "id": "sides",
+      "label": "Sides",
+      "intro": "Family-style, built to share.",
+      "items": [
+        { "name": "Truffle Pomme Purée", "desc": "Black truffle, chives", "price": "18" },
+        { "name": "Charred Broccolini", "desc": "Calabrian chile, garlic", "price": "16" },
+        { "name": "Lobster Mac & Cheese", "desc": "Gruyère, brioche crumb", "price": "24" },
+        { "name": "Jumbo Lump Crab Fried Rice", "desc": "Scallion, egg", "price": "22" },
+        { "name": "Roasted Wild Mushrooms", "desc": "Thyme, sherry", "price": "17" }
+      ]
+    },
+    {
+      "id": "bar",
+      "label": "Bar",
+      "intro": "Classic cocktails, rare bottles, a cellar built for steak.",
+      "items": [
+        { "name": "Knife Old Fashioned", "desc": "Bourbon, demerara, orange oils", "price": "19" },
+        { "name": "Smoked Manhattan", "desc": "Rye, applewood smoke, cherry", "price": "20" },
+        { "name": "Reserve Cabernet, Napa", "desc": "By the glass", "price": "24" },
+        { "name": "Vintage Champagne", "desc": "By the glass", "price": "28" },
+        { "name": "Amaro Digestivo Flight", "desc": "Three pours, bartender's choice", "price": "26" }
+      ]
+    }
+  ]
+}

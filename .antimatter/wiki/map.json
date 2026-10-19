@@ -1,0 +1,65 @@
+{
+  "root": "/Users/paulwallace/Desktop/knife",
+  "name": "knife",
+  "generatedAt": "2026-10-18T19:54:32.787Z",
+  "fileCount": 18,
+  "dirCount": 3,
+  "languages": {
+    "Markdown": 2,
+    "CSS": 1,
+    "TypeScript": 4,
+    "JavaScript": 1,
+    "JSON": 3
+  },
+  "keyFiles": [
+    "package.json",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "directories": [
+    {
+      "dir": "(root)",
+      "fileCount": 9,
+      "files": [
+        ".gitignore",
+        "AGENTS.md",
+        "eslint.config.mjs",
+        "next-env.d.ts",
+        "next.config.ts",
+        "package-lock.json",
+        "package.json",
+        "README.md",
+        "tsconfig.json"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "app",
+      "fileCount": 4,
+      "files": [
+        "favicon.ico",
+        "globals.css",
+        "layout.tsx",
+        "page.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "metadata",
+          "kind": "const"
+        }
+      ]
+    },
+    {
+      "dir": "public",
+      "fileCount": 5,
+      "files": [
+        "file.svg",
+        "globe.svg",
+        "next.svg",
+        "vercel.svg",
+        "window.svg"
+      ],
+      "symbols": []
+    }
+  ]
+}
