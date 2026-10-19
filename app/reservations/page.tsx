@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Reservations",
-  description: `Reserve a table at ${site.name}.`,
+  description: `Reserve a table at ${site.fullName}.`,
 };
 
 export default function ReservationsPage() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function FadeUp({
   children,
@@ -11,10 +11,10 @@ export default function FadeUp({
 }) {
   return (
     <motion.div
-      initial={{ y: 28, opacity: 0 }}
+      initial={{ y: 16, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-12% 0px" }}
       className={className}
     >
       {children}

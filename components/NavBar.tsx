@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
-import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export default function NavBar() {
@@ -11,27 +10,32 @@ export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const solid = scrolled || open;
+
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled || open
-          ? "border-b border-knife-ash/50 bg-knife-black/95 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+        "fixed inset-x-0 top-0 z-50 transition-all duration-[400ms]",
+        solid
+          ? "border-b border-hairline bg-surface/92 backdrop-blur-md"
+          : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between px-4 sm:h-[4.5rem] sm:px-6 lg:px-10">
+      <div className="container-lux section-x flex h-[72px] items-center justify-between md:h-[88px]">
         <Link
           href="/"
-          className="font-display text-[1.65rem] tracking-[0.14em] text-knife-cream sm:text-2xl"
+          className={cn(
+            "font-display text-[1.35rem] tracking-[0.04em] md:text-[1.5rem]",
+            solid ? "text-ink" : "text-paper"
+          )}
         >
-          {site.name.toUpperCase()}
+          {site.name}
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -39,19 +43,28 @@ export default function NavBar() {
             <Link
               key={item.href}
               href={item.href}
-              className="link-underline text-caption text-knife-cream/75 hover:text-knife-cream"
+              className={cn(
+                "link-lux text-caps",
+                solid ? "text-ink" : "text-paper"
+              )}
             >
               {item.label}
             </Link>
           ))}
-          <Button href={site.reservationUrl} className="ml-2">
+          <Link
+            href={site.reservationUrl}
+            className={cn(
+              "link-lux text-caps",
+              solid ? "text-terracotta" : "text-paper"
+            )}
+          >
             Reserve
-          </Button>
+          </Link>
         </nav>
 
         <button
           type="button"
-          className="text-caption text-knife-cream lg:hidden"
+          className={cn("text-caps lg:hidden", solid ? "text-ink" : "text-paper")}
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
@@ -60,28 +73,29 @@ export default function NavBar() {
         </button>
       </div>
 
-      <div
-        className={cn(
-          "border-t border-knife-ash/50 bg-knife-black lg:hidden",
-          open ? "block" : "hidden"
-        )}
-      >
-        <nav className="flex flex-col gap-5 px-5 py-8">
-          {site.nav.map((item) => (
+      {open && (
+        <div className="border-t border-hairline bg-surface lg:hidden">
+          <nav className="flex flex-col gap-6 px-6 py-10">
+            {site.nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="font-display text-display-m text-ink"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
             <Link
-              key={item.href}
-              href={item.href}
-              className="font-display text-3xl text-knife-cream"
+              href={site.reservationUrl}
+              className="btn-terra mt-4 w-full"
               onClick={() => setOpen(false)}
             >
-              {item.label}
+              Reserve a Table
             </Link>
-          ))}
-          <Button href={site.reservationUrl} className="mt-2 w-full">
-            Reserve a Table
-          </Button>
-        </nav>
-      </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

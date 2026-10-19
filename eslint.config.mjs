@@ -14,6 +14,14 @@ const eslintConfig = [
   {
     ignores: [".next/**", "out/**", "build/**", "next-env.d.ts"],
   },
+  {
+    files: ["components/blocks/**/*.{ts,tsx}", "components/react-bits/**/*.{ts,tsx}"],
+    rules: {
+      "@next/next/no-img-element": "off",
+      "react/no-unescaped-entities": "off",
+    },
+  },
 ];
+
 
 export default eslintConfig;

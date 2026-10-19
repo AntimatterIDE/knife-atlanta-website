@@ -1,165 +1,165 @@
 import Image from "next/image";
+import Link from "next/link";
 import FadeUp from "@/components/FadeUp";
-import Parallax from "@/components/Parallax";
-import Section from "@/components/Section";
-import Button from "@/components/ui/Button";
+import { BlurHighlight } from "@/components/react-bits/blur-highlight";
 import { images } from "@/lib/images";
 import { menu, site } from "@/lib/site";
 
 export default function HomePage() {
-  const featured = menu.categories[0]?.items.slice(0, 3) ?? [];
+  const featured = menu.categories[0]?.items.slice(0, 4) ?? [];
 
   return (
     <>
-      <section className="relative flex min-h-[100svh] overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={images.hero}
-            alt="Seared steak at Knife Atlanta"
-            fill
-            priority
-            className="ken-burns object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div className="overlay-hero absolute inset-0 z-[1]" />
-        <div className="grain" />
-
-        <div className="relative z-10 flex w-full flex-1 flex-col justify-end section-padding pb-16 pt-28 sm:pb-24 md:pb-28">
-          <p className="rise-in text-caption text-knife-gold">
-            Buckhead · {site.city}
-          </p>
-          <h1 className="rise-in rise-in-delay-1 mt-3 font-display text-display text-knife-cream drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)]">
-            {site.name}
-          </h1>
-          <p className="rise-in rise-in-delay-2 mt-5 max-w-lg text-subtitle text-knife-cream drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
-            {site.tagline}. Dry-aged beef over live fire.
-          </p>
-          <div className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-4">
-            <Button href={site.reservationUrl}>Reserve a Table</Button>
-            <Button href="/menu" variant="ghost">
-              View Menu
-            </Button>
+      <section className="relative h-screen w-full overflow-hidden">
+        <Image
+          src={images.hero}
+          alt="Modern Mediterranean cuisine at Knife Atlanta"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="scrim-hero absolute inset-0" />
+        <div className="absolute inset-x-0 bottom-0 section-x pb-16 md:pb-24">
+          <div className="container-lux">
+            <p className="rise-lux text-eyebrow text-paper/80">Atlanta</p>
+            <h1 className="rise-lux rise-lux-1 mt-4 font-display text-display-xl text-paper">
+              {site.name}
+            </h1>
+            <p className="rise-lux rise-lux-2 mt-5 max-w-md text-lead text-paper/90">
+              {site.tagline}. Chic evenings, coastal plates, and a room built for gathering.
+            </p>
+            <div className="rise-lux rise-lux-3 mt-10 flex flex-wrap gap-4">
+              <Link href={site.reservationUrl} className="btn-border-light">
+                Reserve a Table
+              </Link>
+              <Link href="/menu" className="link-lux text-caps text-paper">
+                View Menu ›
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <Section className="relative overflow-hidden bg-knife-charcoal">
-        <div className="mx-auto grid max-w-[90rem] items-center gap-14 lg:grid-cols-12 lg:gap-16">
-          <FadeUp className="lg:col-span-5">
-            <p className="text-caption text-knife-gold">The Ritual</p>
-            <h2 className="mt-5 font-display text-headline text-knife-cream">
-              Dry-aged.
-              <br />
-              Live fire.
-            </h2>
-            <div className="gold-rule mt-7" />
-            <p className="mt-7 max-w-md text-body-lg text-knife-mist">
-              House aging. Open flame. A Buckhead room built for evenings that
-              refuse to rush.
-            </p>
-            <div className="mt-10">
-              <Button href="/story" variant="ghost">
-                Our Story
-              </Button>
-            </div>
-          </FadeUp>
+      <section className="damask section-y section-x">
+        <FadeUp className="container-lux mx-auto max-w-3xl text-center">
+          <p className="text-eyebrow text-terracotta">The house</p>
+          <div className="mt-10 font-display text-display-m text-ink md:text-display-l">
+            <BlurHighlight
+              blurAmount={6}
+              inactiveOpacity={0.35}
+              highlightColor="#8c4a32"
+              highlightedBits={["modern Mediterranean", "chic sophistication"]}
+              viewportOptions={{ once: true, amount: 0.4 }}
+            >
+              {site.description}
+            </BlurHighlight>
+          </div>
+        </FadeUp>
+      </section>
 
-          <Parallax
-            offset={60}
-            className="relative aspect-[4/5] overflow-hidden sm:aspect-[5/4] lg:col-span-7 lg:aspect-[4/5]"
-          >
+      <section className="section-y section-x bg-surface-2">
+        <div className="container-lux grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+          <FadeUp className="relative aspect-[4/5] overflow-hidden">
             <Image
-              src={images.steak}
-              alt="Prime steak finished over live fire"
+              src={images.mezze}
+              alt="Mezze and Mediterranean shared plates"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 55vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </Parallax>
+          </FadeUp>
+          <FadeUp>
+            <p className="text-eyebrow text-terracotta">Cuisine</p>
+            <h2 className="mt-5 font-display text-display-m text-ink">
+              Modern Mediterranean, made for the table.
+            </h2>
+            <p className="mt-6 max-w-[46ch] text-ink-muted">
+              {site.philosophy}
+            </p>
+            <Link href="/story" className="link-lux mt-10 text-caps text-ink">
+              Get to know us ›
+            </Link>
+          </FadeUp>
         </div>
-      </Section>
+      </section>
 
-      <Section>
-        <FadeUp className="mx-auto max-w-[90rem]">
+      <section className="section-y section-x">
+        <FadeUp className="container-lux">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-caption text-knife-gold">From the grill</p>
-              <h2 className="mt-4 font-display text-title text-knife-cream">
-                Signature cuts
+              <p className="text-eyebrow text-terracotta">From the menu</p>
+              <h2 className="mt-4 font-display text-display-m text-ink">
+                Begin with mezze
               </h2>
             </div>
-            <Button href="/menu" variant="ghost">
-              Full Menu
-            </Button>
+            <Link href="/menu" className="link-lux text-caps text-ink">
+              Full Menu ›
+            </Link>
           </div>
-
-          <div className="knife-divider mt-12" />
-
+          <div className="hairline mt-12" />
           <ul>
-            {featured.map((item, i) => (
-              <FadeUp key={item.name}>
-                <li
-                  className={`grid gap-3 py-9 md:grid-cols-[1fr_auto] md:items-baseline md:gap-10 ${
-                    i < featured.length - 1 ? "border-b border-knife-ash/60" : ""
-                  }`}
-                >
-                  <div>
-                    <h3 className="font-display text-[2rem] text-knife-cream md:text-[2.35rem]">
-                      {item.name}
-                    </h3>
-                    <p className="mt-2 text-knife-mist">{item.desc}</p>
-                  </div>
-                  <p className="font-display text-2xl text-knife-gold md:text-3xl">
-                    ${item.price}
-                  </p>
-                </li>
-              </FadeUp>
+            {featured.map((item) => (
+              <li
+                key={item.name}
+                className="grid gap-2 border-b border-hairline py-8 md:grid-cols-[1fr_auto] md:items-baseline"
+              >
+                <div>
+                  <h3 className="font-display text-2xl text-ink md:text-3xl">
+                    {item.name}
+                  </h3>
+                  {item.desc ? (
+                    <p className="mt-2 max-w-xl text-ink-muted">{item.desc}</p>
+                  ) : null}
+                </div>
+                <p className="font-display text-xl text-terracotta">
+                  {item.price === "MP" ? "MP" : `$${item.price}`}
+                </p>
+              </li>
             ))}
           </ul>
         </FadeUp>
-      </Section>
+      </section>
 
-      <section className="relative min-h-[75vh] overflow-hidden">
+      <section className="relative min-h-[80vh] overflow-hidden">
         <Image
-          src={images.dining}
+          src={images.interior}
           alt="Knife dining room"
           fill
           className="object-cover"
           sizes="100vw"
         />
-        <div className="overlay-full absolute inset-0" />
-        <div className="grain" />
-        <div className="relative z-10 flex min-h-[75vh] items-center section-padding">
-          <FadeUp className="max-w-xl">
-            <p className="text-caption text-knife-gold">Private Dining</p>
-            <h2 className="mt-5 font-display text-headline text-knife-cream">
-              Rooms for the nights that matter.
+        <div className="scrim-hero absolute inset-0" />
+        <div className="relative z-10 flex min-h-[80vh] items-end section-x pb-16 md:pb-24">
+          <FadeUp className="container-lux max-w-xl">
+            <p className="text-eyebrow text-paper/80">Private events</p>
+            <h2 className="mt-4 font-display text-display-l text-paper">
+              Gatherings, elevated.
             </h2>
-            <p className="mt-6 text-body-lg text-knife-cream/85">
-              Birthdays, board dinners, quiet celebrations — reserved spaces
-              with the full Knife kitchen behind them.
+            <p className="mt-5 text-lead text-paper/90">
+              Large parties and private evenings with the full Knife kitchen
+              behind them.
             </p>
-            <div className="mt-10">
-              <Button href="/private-dining" variant="light">
-                Plan an Event
-              </Button>
-            </div>
+            <Link href="/private-dining" className="btn-border-light mt-10">
+              Plan an Event
+            </Link>
           </FadeUp>
         </div>
       </section>
 
-      <Section className="bg-knife-smoke">
-        <FadeUp className="mx-auto flex max-w-[90rem] flex-col items-start justify-between gap-10 md:flex-row md:items-end">
+      <section className="section-y section-x bg-surface">
+        <FadeUp className="container-lux flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
           <div>
-            <p className="text-caption text-knife-gold">Tonight</p>
-            <h2 className="mt-4 max-w-xl font-display text-headline text-knife-cream">
+            <p className="text-eyebrow text-terracotta">Tonight</p>
+            <h2 className="mt-4 font-display text-display-l text-ink">
               Your table is waiting.
             </h2>
           </div>
-          <Button href={site.reservationUrl}>Reserve on OpenTable</Button>
+          <Link href={site.reservationUrl} className="btn-terra">
+            Reserve on OpenTable
+          </Link>
         </FadeUp>
-      </Section>
+      </section>
     </>
   );
 }

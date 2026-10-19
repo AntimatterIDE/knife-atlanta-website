@@ -1,52 +1,88 @@
 {
   "categories": [
     {
-      "id": "steaks",
-      "label": "Steaks",
-      "intro": "Dry-aged in house, finished over live fire. Served with choice of two sauces.",
+      "id": "appetizers",
+      "label": "Appetizers",
+      "intro": "Mezze, coastal starters, and plates made for sharing.",
       "items": [
-        { "name": "Bone-In Filet", "desc": "8oz, center-cut, 28-day dry-aged", "price": "68" },
-        { "name": "New York Strip", "desc": "16oz, hand-selected prime", "price": "72" },
-        { "name": "Ribeye", "desc": "22oz, bone-in, 45-day dry-aged", "price": "86" },
-        { "name": "Porterhouse for Two", "desc": "40oz, tableside carving", "price": "168" },
-        { "name": "Wagyu Strip", "desc": "A5 Japanese, 6oz", "price": "145" },
-        { "name": "Tomahawk", "desc": "36oz, 40-day dry-aged, serves two", "price": "155" }
+        { "name": "Chef's Soup of the Day", "desc": "Ask your server for today's seasonal selection", "price": "MP" },
+        { "name": "Hummus", "desc": "Chickpeas, tahini, garlic, fresh lemon — add hot Sujuk +$5", "price": "10" },
+        { "name": "Meze Trio", "desc": "Marinated olives, Atom labneh, smoked eggplant Baba Ghanoush, warm pita", "price": "21" },
+        { "name": "Shrimp Ceviche", "desc": "Shrimp, lime, tomatoes, cucumbers, avocado, red onion, cilantro", "price": "17" },
+        { "name": "Cheese Plate", "desc": "Four artisanal cheeses, Bresaola, crispy crackers", "price": "25" },
+        { "name": "Salmon Sliders", "desc": "Mini brioche, seared salmon, house spicy honey aioli", "price": "30" },
+        { "name": "Mushroom Soufflé", "desc": "Trio of dehydrated mushrooms, Parmesan, arugula sauce", "price": "17" },
+        { "name": "Patatas Bravas", "desc": "Crispy potatoes, coriander-pepper sauce, garlic aioli", "price": "10" },
+        { "name": "Shrimp Bravas", "desc": "Pan-roasted shrimp, garlic, bravas sauce", "price": "23" },
+        { "name": "Calamari di Mare", "desc": "Fried calamari, sweet chili, house tartar", "price": "20" },
+        { "name": "Fried Lobster Tail", "desc": "Mustard sauce, fried Brussels sprouts, lemon", "price": "34" },
+        { "name": "Lobster Mac & Cheese", "desc": "Rich lobster mac, finished tableside", "price": "32" }
       ]
     },
     {
-      "id": "seafood",
-      "label": "Seafood",
-      "intro": "Daily boat-to-table selections and chilled classics.",
+      "id": "salads",
+      "label": "Salads",
+      "intro": "Bright, composed, and built for the table.",
       "items": [
-        { "name": "Chilled Seafood Tower", "desc": "Oysters, shrimp, crab, lobster", "price": "95" },
-        { "name": "Scottish Salmon", "desc": "Crisp skin, citrus beurre blanc", "price": "48" },
-        { "name": "Jumbo Lump Crab Cake", "desc": "Whole grain mustard, remoulade", "price": "42" },
-        { "name": "Butter-Poached Lobster Tail", "desc": "8oz, drawn butter", "price": "74" },
-        { "name": "Seared Diver Scallops", "desc": "Brown butter, sea beans", "price": "52" }
+        { "name": "Caesar Salad", "desc": "Romaine, Caesar dressing, croutons, Parmesan", "price": "16" },
+        { "name": "Knife Salad", "desc": "Baby greens, cucumbers, tomatoes, pomegranate, avocado dressing", "price": "16" },
+        { "name": "Roasted Beet Salad", "desc": "Arugula, beetroot, goat cheese, cranberries, walnuts, pomegranate, balsamic", "price": "17" },
+        { "name": "Greek Salad", "desc": "Tomatoes, onions, cucumbers, olives, feta, olive oil vinaigrette", "price": "16" }
       ]
     },
     {
-      "id": "sides",
-      "label": "Sides",
-      "intro": "Family-style, built to share.",
+      "id": "entrees",
+      "label": "Entrées",
+      "intro": "Coastal classics and charcoal-kissed plates.",
       "items": [
-        { "name": "Truffle Pomme Purée", "desc": "Black truffle, chives", "price": "18" },
-        { "name": "Charred Broccolini", "desc": "Calabrian chile, garlic", "price": "16" },
-        { "name": "Lobster Mac & Cheese", "desc": "Gruyère, brioche crumb", "price": "24" },
-        { "name": "Jumbo Lump Crab Fried Rice", "desc": "Scallion, egg", "price": "22" },
-        { "name": "Roasted Wild Mushrooms", "desc": "Thyme, sherry", "price": "17" }
+        { "name": "Seafood Kokorech", "desc": "Branzino stew with asparagus, tomatoes, onions & orzo rice", "price": "38" },
+        { "name": "Knife Burger", "desc": "Beef tenderloin, cheddar, Mediterranean aioli, fries", "price": "28" },
+        { "name": "Bone-in Ribeye (20 oz)", "desc": "21-day aged Angus, fingerling potatoes, asparagus", "price": "68" },
+        { "name": "Surf and Turf", "desc": "12 oz New York Strip & crispy fried lobster tail", "price": "88" },
+        { "name": "Salmon Menorca", "desc": "Grilled salmon, broccoli, saffron rice, lemon-butter", "price": "34" },
+        { "name": "Bodrum Branzino", "desc": "Bone-in Branzino, zucchini, peppers, fingerling potatoes, chimichurri", "price": "44" },
+        { "name": "Chicken Florentine", "desc": "Grilled chicken thighs, creamy spinach, orzo, baby carrots", "price": "30" },
+        { "name": "Lamb Shank", "desc": "Australian hind leg, tomato braise, mashed potatoes, orzo", "price": "44" },
+        { "name": "New York Strip", "desc": "12 oz Strip, asparagus, herbed butter, mashed potatoes, chimichurri", "price": "58" },
+        { "name": "Lamb Chops", "desc": "Australian lamb loin, fingerling potatoes, asparagus, orzo, chimichurri", "price": "52" }
       ]
     },
     {
-      "id": "bar",
-      "label": "Bar",
-      "intro": "Classic cocktails, rare bottles, a cellar built for steak.",
+      "id": "pastas",
+      "label": "Pastas",
+      "intro": "Coastal pastas finished with Parmesan and herbs.",
       "items": [
-        { "name": "Knife Old Fashioned", "desc": "Bourbon, demerara, orange oils", "price": "19" },
-        { "name": "Smoked Manhattan", "desc": "Rye, applewood smoke, cherry", "price": "20" },
-        { "name": "Reserve Cabernet, Napa", "desc": "By the glass", "price": "24" },
-        { "name": "Vintage Champagne", "desc": "By the glass", "price": "28" },
-        { "name": "Amaro Digestivo Flight", "desc": "Three pours, bartender's choice", "price": "26" }
+        { "name": "Pasta Alla Puttanesca", "desc": "Linguine, tomato, onions, capers, basil, mushrooms, olives, Parmesan", "price": "28" },
+        { "name": "Seafood Linguini", "desc": "Clams, shrimp, squid, garlic, tomato, cream, pesto, Parmesan", "price": "35" },
+        { "name": "Riviera Pasta", "desc": "Penne, chicken, garlic cream, sun-dried tomatoes — add shrimp +$10", "price": "29" },
+        { "name": "Chicken Tagliatelle", "desc": "Pan-roasted chicken, peppers, mushrooms, pesto crème, Parmesan", "price": "29" }
+      ]
+    },
+    {
+      "id": "kebabs",
+      "label": "Kebabs",
+      "intro": "Served with signature orzo rice, grilled vegetables, and chimichurri.",
+      "items": [
+        { "name": "Filet Kebab", "desc": "Charcoal-grilled tenderloin with lemon, garlic & herbs, tzatziki", "price": "36" },
+        { "name": "Adana Kebab", "desc": "Spiced ground lamb on warm pita with tzatziki", "price": "28" },
+        { "name": "Chicken Kebab", "desc": "Saffron-yogurt marinated chicken breast, tzatziki", "price": "28" },
+        { "name": "Shrimp Kebab", "desc": "Tomato-herb grilled shrimp, fingerling potatoes", "price": "30" },
+        { "name": "Veggie Kebab", "desc": "Zucchini, asparagus, potatoes over marinara & tzatziki", "price": "22" },
+        { "name": "Chef's Plate for Two", "desc": "Adana, Chicken, Shrimp, Filet Kebabs with Lamb Chops", "price": "150" }
+      ]
+    },
+    {
+      "id": "desserts",
+      "label": "Desserts",
+      "intro": "A sweet close to the evening.",
+      "items": [
+        { "name": "Baklava", "desc": "", "price": "16" },
+        { "name": "Fried Ice Cream", "desc": "", "price": "24" },
+        { "name": "Tiramisu", "desc": "", "price": "12" },
+        { "name": "Chocolate Lava Cake", "desc": "", "price": "13" },
+        { "name": "Cheesecake", "desc": "", "price": "12" },
+        { "name": "Crème Brûlée", "desc": "", "price": "12" },
+        { "name": "Fruit Platter", "desc": "", "price": "24" }
       ]
     }
   ]

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import FadeUp from "@/components/FadeUp";
-import Section from "@/components/Section";
 import { menu } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -12,56 +11,58 @@ export default function MenuPage() {
   const current = categories.find((c) => c.id === active) ?? categories[0];
 
   return (
-    <Section className="mx-auto max-w-5xl">
-      <FadeUp className="text-center">
-        <p className="text-caption text-knife-gold">The Menu</p>
-        <h1 className="mt-4 font-display text-headline text-knife-cream">
-          Knife
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl text-knife-mist">
-          Dry-aged beef, live-fire cooking, and a cellar built for steak.
-        </p>
-      </FadeUp>
-
-      <div className="mt-12 flex flex-wrap justify-center gap-2 border-b border-knife-ash/60 pb-4">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            type="button"
-            onClick={() => setActive(cat.id)}
-            className={cn(
-              "px-4 py-2 text-caption transition-colors",
-              active === cat.id
-                ? "text-knife-gold"
-                : "text-knife-mist hover:text-knife-cream"
-            )}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
-
-      {current && (
-        <FadeUp key={current.id} className="mt-10">
-          <p className="text-center text-knife-mist">{current.intro}</p>
-          <ul className="mt-8 divide-y divide-knife-ash/70">
-            {current.items.map((item) => (
-              <li
-                key={item.name}
-                className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between"
-              >
-                <div>
-                  <h2 className="font-display text-2xl text-knife-cream">
-                    {item.name}
-                  </h2>
-                  <p className="mt-1 text-knife-mist">{item.desc}</p>
-                </div>
-                <p className="font-display text-xl text-knife-gold">${item.price}</p>
-              </li>
-            ))}
-          </ul>
+    <div className="bg-surface pt-[88px]">
+      <section className="section-y section-x">
+        <FadeUp className="container-lux mx-auto max-w-4xl text-center">
+          <p className="text-eyebrow text-terracotta">Menu</p>
+          <h1 className="mt-5 font-display text-display-l text-ink">Knife</h1>
+          <p className="mx-auto mt-5 max-w-xl text-ink-muted">
+            Modern Mediterranean — mezze, charcoal, pasta, and kebabs.
+          </p>
         </FadeUp>
-      )}
-    </Section>
+
+        <div className="container-lux mx-auto mt-14 flex max-w-4xl flex-wrap justify-center gap-2 border-b border-hairline pb-4">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              type="button"
+              onClick={() => setActive(cat.id)}
+              className={cn(
+                "px-4 py-2 text-caps transition-colors",
+                active === cat.id
+                  ? "text-terracotta"
+                  : "text-ink-muted hover:text-ink"
+              )}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {current && (
+          <FadeUp key={current.id} className="container-lux mx-auto mt-12 max-w-3xl">
+            <p className="text-center text-ink-muted">{current.intro}</p>
+            <ul className="mt-10">
+              {current.items.map((item) => (
+                <li
+                  key={item.name}
+                  className="grid gap-2 border-b border-hairline py-7 md:grid-cols-[1fr_auto] md:items-baseline"
+                >
+                  <div>
+                    <h2 className="font-display text-2xl text-ink">{item.name}</h2>
+                    {item.desc ? (
+                      <p className="mt-2 text-ink-muted">{item.desc}</p>
+                    ) : null}
+                  </div>
+                  <p className="font-display text-xl text-terracotta">
+                    {item.price === "MP" ? "MP" : `$${item.price}`}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </FadeUp>
+        )}
+      </section>
+    </div>
   );
 }
