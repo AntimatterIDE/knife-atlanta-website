@@ -16,7 +16,7 @@ export default function HomePage() {
           alt="Modern Mediterranean cuisine at Knife Atlanta"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-[center_40%]"
           sizes="100vw"
         />
         <div className="scrim-hero absolute inset-0" />
