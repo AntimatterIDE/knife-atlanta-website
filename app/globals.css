@@ -1,31 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --knife-black:    #0a0906;
-  --knife-charcoal: #141210;
-  --knife-smoke:    #1e1c19;
-  --knife-ash:      #2c2926;
-  --knife-warm:     #3d3830;
-  --knife-mist:     #8a7f72;
-  --knife-cream:    #e8e0d5;
-  --knife-parchment:#f2ece3;
-  --knife-gold:     #c9a84c;
-  --knife-amber:    #b8860b;
-  --knife-copper:   #a0522d;
-  --knife-white:    #faf8f5;
+  --knife-black: #070605;
+  --knife-charcoal: #100e0c;
+  --knife-smoke: #1a1714;
+  --knife-ash: #2f2a24;
+  --knife-warm: #4a3f34;
+  --knife-mist: #a89a8a;
+  --knife-cream: #f3ece3;
+  --knife-parchment: #faf6f0;
+  --knife-gold: #d4b06a;
+  --knife-ember: #c4783a;
+  --knife-white: #fffdf9;
 
   --background: var(--knife-black);
   --foreground: var(--knife-cream);
 
-  --text-display:  clamp(3.5rem, 10vw, 9rem);
-  --text-headline: clamp(2.25rem, 6vw, 5.5rem);
-  --text-title:    clamp(1.75rem, 4vw, 3rem);
-  --text-subtitle: clamp(1.1rem, 2.5vw, 1.6rem);
-  --text-body:     clamp(0.9375rem, 1.2vw, 1.0625rem);
-  --text-caption:  clamp(0.7rem, 0.9vw, 0.8rem);
+  --text-display: clamp(4.5rem, 14vw, 11rem);
+  --text-headline: clamp(2.5rem, 7vw, 5.75rem);
+  --text-title: clamp(1.85rem, 4vw, 3.25rem);
+  --text-subtitle: clamp(1.15rem, 2.4vw, 1.55rem);
+  --text-body: clamp(0.95rem, 1.15vw, 1.05rem);
+  --text-caption: clamp(0.65rem, 0.85vw, 0.75rem);
 
-  --section-py: clamp(4.5rem, 12vw, 9rem);
-  --section-px: clamp(1.25rem, 6vw, 6rem);
+  --section-py: clamp(5rem, 14vw, 10rem);
+  --section-px: clamp(1.25rem, 5.5vw, 5.5rem);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -33,26 +32,33 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold:       var(--knife-gold);
-  --color-amber:      var(--knife-amber);
-  --color-mist:       var(--knife-mist);
-  --color-cream:      var(--knife-cream);
-  --color-smoke:      var(--knife-smoke);
-  --color-ash:        var(--knife-ash);
-  --color-charcoal:   var(--knife-charcoal);
-  --color-knife-black:    var(--knife-black);
+  --color-gold: var(--knife-gold);
+  --color-ember: var(--knife-ember);
+  --color-mist: var(--knife-mist);
+  --color-cream: var(--knife-cream);
+  --color-smoke: var(--knife-smoke);
+  --color-ash: var(--knife-ash);
+  --color-charcoal: var(--knife-charcoal);
+  --color-knife-black: var(--knife-black);
   --color-knife-charcoal: var(--knife-charcoal);
-  --color-knife-smoke:    var(--knife-smoke);
-  --color-knife-ash:      var(--knife-ash);
-  --color-knife-cream:    var(--knife-cream);
-  --color-knife-gold:     var(--knife-gold);
-  --color-knife-amber:    var(--knife-amber);
-  --font-display: var(--font-cormorant);
-  --font-sans:    var(--font-inter);
-  --font-body:    var(--font-inter);
+  --color-knife-smoke: var(--knife-smoke);
+  --color-knife-ash: var(--knife-ash);
+  --color-knife-cream: var(--knife-cream);
+  --color-knife-gold: var(--knife-gold);
+  --color-knife-ember: var(--knife-ember);
+  --color-knife-mist: var(--knife-mist);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-body: var(--font-sans);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: auto;
@@ -65,26 +71,65 @@ html {
 body {
   background: var(--knife-black);
   color: var(--knife-cream);
-  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans), "Manrope", system-ui, sans-serif;
   font-size: var(--text-body);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
 }
 
-::selection { background: var(--knife-gold); color: var(--knife-black); }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--knife-black); }
-::-webkit-scrollbar-thumb { background: var(--knife-ash); border-radius: 2px; }
+::selection {
+  background: var(--knife-gold);
+  color: var(--knife-black);
+}
 
-.font-display { font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif; }
-.font-sans    { font-family: var(--font-inter), 'Inter', system-ui, sans-serif; }
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--knife-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--knife-ash);
+}
 
-.text-display  { font-size: var(--text-display);  line-height: 0.92; letter-spacing: -0.02em; }
-.text-headline { font-size: var(--text-headline); line-height: 0.96; letter-spacing: -0.015em; }
-.text-title    { font-size: var(--text-title);    line-height: 1.05; letter-spacing: -0.01em; }
-.text-subtitle { font-size: var(--text-subtitle); line-height: 1.25; }
-.text-body-lg  { font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.7; }
-.text-caption  { font-size: var(--text-caption); letter-spacing: 0.14em; text-transform: uppercase; }
+.font-display {
+  font-family: var(--font-display), "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.font-sans {
+  font-family: var(--font-sans), "Manrope", system-ui, sans-serif;
+}
+
+.text-display {
+  font-size: var(--text-display);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+}
+.text-headline {
+  font-size: var(--text-headline);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+}
+.text-title {
+  font-size: var(--text-title);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.text-subtitle {
+  font-size: var(--text-subtitle);
+  line-height: 1.3;
+}
+.text-body-lg {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.65;
+}
+.text-caption {
+  font-size: var(--text-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 
 .section-padding {
   padding-top: var(--section-py);
@@ -94,7 +139,7 @@ body {
 }
 
 .gold-rule {
-  width: 3rem;
+  width: 2.5rem;
   height: 1px;
   background: var(--knife-gold);
 }
@@ -102,39 +147,128 @@ body {
 .knife-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--knife-ash) 20%, var(--knife-ash) 80%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--knife-ash) 15%,
+    var(--knife-ash) 85%,
+    transparent
+  );
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.img-fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.img-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-hero {
+  background:
+    linear-gradient(
+      to top,
+      rgba(7, 6, 5, 0.97) 0%,
+      rgba(7, 6, 5, 0.72) 28%,
+      rgba(7, 6, 5, 0.35) 55%,
+      rgba(7, 6, 5, 0.45) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% 30%,
+      transparent 0%,
+      rgba(7, 6, 5, 0.45) 100%
+    );
+}
 
 .overlay-dark {
-  background: linear-gradient(to bottom, rgba(10,9,6,0.25) 0%, rgba(10,9,6,0.55) 55%, rgba(10,9,6,0.95) 100%);
-}
-.overlay-left {
-  background: linear-gradient(to right, rgba(10,9,6,0.92) 0%, rgba(10,9,6,0.5) 55%, transparent 100%);
-}
-.overlay-full {
-  background: rgba(10,9,6,0.55);
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 6, 5, 0.2) 0%,
+    rgba(7, 6, 5, 0.55) 50%,
+    rgba(7, 6, 5, 0.96) 100%
+  );
 }
 
-.text-stroke-gold {
-  -webkit-text-stroke: 1px var(--knife-gold);
-  color: transparent;
+.overlay-full {
+  background: linear-gradient(
+    105deg,
+    rgba(7, 6, 5, 0.88) 0%,
+    rgba(7, 6, 5, 0.55) 45%,
+    rgba(7, 6, 5, 0.35) 100%
+  );
+}
+
+.grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ken-burns {
+  animation: kenBurns 28s ease-out forwards;
+  will-change: transform;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: riseIn 1.1s var(--ease-out-expo) both;
+}
+.rise-in-delay-1 {
+  animation-delay: 0.15s;
+}
+.rise-in-delay-2 {
+  animation-delay: 0.3s;
+}
+.rise-in-delay-3 {
+  animation-delay: 0.45s;
 }
 
 @media (hover: hover) {
-  .link-underline { position: relative; }
+  .link-underline {
+    position: relative;
+  }
   .link-underline::after {
-    content: '';
+    content: "";
     position: absolute;
-    left: 0; bottom: -2px;
-    width: 100%; height: 1px;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s var(--ease-out-expo);
+    transition: transform 0.45s var(--ease-out-expo);
   }
-  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }

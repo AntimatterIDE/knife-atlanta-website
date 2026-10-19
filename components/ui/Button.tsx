@@ -5,7 +5,7 @@ type ButtonProps = {
   href?: string;
   children: React.ReactNode;
   className?: string;
-  variant?: "gold" | "ghost";
+  variant?: "gold" | "ghost" | "light";
   type?: "button" | "submit";
   onClick?: () => void;
 };
@@ -19,11 +19,13 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const styles = cn(
-    "inline-flex items-center justify-center px-7 py-3 text-caption tracking-[0.16em] transition-colors duration-300",
+    "inline-flex items-center justify-center px-8 py-3.5 text-caption tracking-[0.2em] transition-all duration-400",
     variant === "gold" &&
       "bg-knife-gold text-knife-black hover:bg-knife-cream",
     variant === "ghost" &&
-      "border border-knife-gold/60 text-knife-cream hover:border-knife-gold hover:text-knife-gold",
+      "border border-knife-cream/35 text-knife-cream hover:border-knife-cream hover:bg-knife-cream/5",
+    variant === "light" &&
+      "bg-knife-cream text-knife-black hover:bg-knife-gold",
     className
   );
 

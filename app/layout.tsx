@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Instrument_Serif, Manrope } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  weight: "400",
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+        url: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
         alt: `${site.name} steakhouse`,
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${instrument.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-knife-black text-knife-cream antialiased">
         <LenisProvider>
           <NavBar />

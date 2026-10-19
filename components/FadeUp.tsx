@@ -11,10 +11,10 @@ export default function FadeUp({
 }) {
   return (
     <motion.div
-      initial={{ y: 10, opacity: 0 }}
+      initial={{ y: 28, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-80px" }}
       className={className}
     >
       {children}
