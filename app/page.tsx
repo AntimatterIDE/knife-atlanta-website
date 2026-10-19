@@ -25,14 +25,14 @@ export default function HomePage() {
         <div className="overlay-hero absolute inset-0 z-[1]" />
         <div className="grain" />
 
-        <div className="relative z-10 flex w-full flex-col justify-end section-padding pb-16 pt-28 sm:pb-24 md:pb-28">
+        <div className="relative z-10 flex w-full flex-1 flex-col justify-end section-padding pb-16 pt-28 sm:pb-24 md:pb-28">
           <p className="rise-in text-caption text-knife-gold">
             Buckhead · {site.city}
           </p>
-          <h1 className="rise-in rise-in-delay-1 mt-4 font-display text-display text-knife-cream">
+          <h1 className="rise-in rise-in-delay-1 mt-3 font-display text-display text-knife-cream drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)]">
             {site.name}
           </h1>
-          <p className="rise-in rise-in-delay-2 mt-5 max-w-md text-subtitle text-knife-cream/90">
+          <p className="rise-in rise-in-delay-2 mt-5 max-w-lg text-subtitle text-knife-cream drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
             {site.tagline}. Dry-aged beef over live fire.
           </p>
           <div className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-4">

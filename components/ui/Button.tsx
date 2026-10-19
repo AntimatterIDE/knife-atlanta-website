@@ -21,11 +21,11 @@ export default function Button({
   const styles = cn(
     "inline-flex items-center justify-center px-8 py-3.5 text-caption tracking-[0.2em] transition-all duration-400",
     variant === "gold" &&
-      "bg-knife-gold text-knife-black hover:bg-knife-cream",
+      "!text-[#070605] bg-[#d4b06a] hover:bg-[#f3ece3]",
     variant === "ghost" &&
-      "border border-knife-cream/35 text-knife-cream hover:border-knife-cream hover:bg-knife-cream/5",
+      "border border-knife-cream/40 !text-knife-cream hover:border-knife-cream hover:bg-knife-cream/10",
     variant === "light" &&
-      "bg-knife-cream text-knife-black hover:bg-knife-gold",
+      "!text-[#070605] bg-[#f3ece3] hover:bg-[#d4b06a]",
     className
   );
 
