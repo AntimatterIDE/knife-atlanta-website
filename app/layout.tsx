@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       }
     ],
   },
+  robots: "index, follow",
 };
 
 export default metadata;
