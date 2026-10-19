@@ -1,86 +1,77 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Github, Mail } from "lucide-react";
+import { images } from "@/lib/images";
 
-interface TeamMember {
+interface Dish {
   id: number;
   name: string;
   role: string;
   image: string;
-  github: string;
-  mail: string;
+  price: string;
 }
 
-interface About1Props {
-  displayProgressIndicators?: boolean;
-}
-
-const TEAM_MEMBERS: TeamMember[] = [
+const DISHES: Dish[] = [
   {
     id: 1,
-    name: "Alex Chen",
-    role: "CEO & Founder",
-    image: "/svg/placeholder.svg",
-    github: "#",
-    mail: "#",
+    name: "Meze Trio",
+    role: "Hummus, muhammara, labneh — lavash",
+    image: images.mezze,
+    price: "$18",
   },
   {
     id: 2,
-    name: "Sarah Miller",
-    role: "CTO",
-    image: "/svg/placeholder.svg",
-    github: "#",
-    mail: "#",
+    name: "Lamb Chops",
+    role: "Charcoal-grilled with orzo and asparagus",
+    image: images.lamb,
+    price: "$52",
   },
   {
     id: 3,
-    name: "Mike Johnson",
-    role: "Head of Product",
-    image: "/svg/placeholder.svg",
-    github: "#",
-    mail: "#",
+    name: "Filet Kebab",
+    role: "Tenderloin, lemon, garlic, tzatziki",
+    image: images.kebab,
+    price: "$36",
   },
   {
     id: 4,
-    name: "Emma Davis",
-    role: "Lead Designer",
-    image: "/svg/placeholder.svg",
-    github: "#",
-    mail: "#",
+    name: "Lamb Shank",
+    role: "Braised until the evening softens",
+    image: images.shank,
+    price: "$48",
   },
   {
     id: 5,
-    name: "Ryan Park",
-    role: "VP Engineering",
-    image: "/svg/placeholder.svg",
-    github: "#",
-    mail: "#",
+    name: "Shrimp of the House",
+    role: "From the grille, finished at the table",
+    image: images.shrimp,
+    price: "$34",
   },
 ];
 
 const CAROUSEL_CONFIG = {
-  autoPlayInterval: 5000,
-  animationDuration: 0.4,
-  layoutDuration: 2,
-  paddingDuration: 0.75,
-  easing: [0.32, 0.72, 0, 1] as const,
+  autoPlayInterval: 5500,
+  animationDuration: 0.55,
+  layoutDuration: 1.6,
+  paddingDuration: 0.9,
+  easing: [0.22, 1, 0.36, 1] as const,
 };
 
-const CAROUSEL_HEIGHT = 450;
+const CAROUSEL_HEIGHT = 480;
 
 export default function About1({
   displayProgressIndicators = true,
-}: About1Props = {}) {
+}: { displayProgressIndicators?: boolean } = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % TEAM_MEMBERS.length);
+      setActiveIndex((prev) => (prev + 1) % DISHES.length);
     }, CAROUSEL_CONFIG.autoPlayInterval);
-
     return () => clearInterval(interval);
   }, [resetKey]);
 
@@ -89,32 +80,112 @@ export default function About1({
     setResetKey((prev) => prev + 1);
   };
 
-  const getVisibleMembers = (): TeamMember[] => {
-    return [
-      TEAM_MEMBERS[activeIndex],
-      TEAM_MEMBERS[(activeIndex + 1) % TEAM_MEMBERS.length],
-      TEAM_MEMBERS[(activeIndex + 2) % TEAM_MEMBERS.length],
-    ];
-  };
+  const visible = [
+    DISHES[activeIndex],
+    DISHES[(activeIndex + 1) % DISHES.length],
+    DISHES[(activeIndex + 2) % DISHES.length],
+  ];
 
   return (
-    <section className="w-full flex items-start lg:items-center py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-neutral-950">
-      <div className="max-w-[1400px] mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <TeamMemberList
-            activeIndex={activeIndex}
-            onIndexChange={handleIndexChange}
-          />
+    <section
+      aria-labelledby="kitchen-title"
+      className="w-full bg-surface section-y section-x"
+    >
+      <div className="container-lux mx-auto w-full">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="order-2 lg:order-1 lg:col-span-3">
+            <div className="space-y-5">
+              {DISHES.map((dish, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <button
+                    key={dish.id}
+                    type="button"
+                    onClick={() => handleIndexChange(index)}
+                    className="group flex w-full items-center gap-3 text-left"
+                  >
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                        isActive ? "bg-ink" : "bg-ink/25 group-hover:bg-ink/50"
+                      }`}
+                    />
+                    <span
+                      className={`text-sm tracking-wide ${
+                        isActive
+                          ? "font-medium text-ink"
+                          : "text-ink-muted group-hover:text-ink"
+                      }`}
+                    >
+                      {dish.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-          <div className="lg:col-span-9 order-1 lg:order-2">
-            <Header />
-            <Carousel visibleMembers={getVisibleMembers()} />
-            {displayProgressIndicators && (
-              <ProgressIndicators
-                activeIndex={activeIndex}
-                onIndexChange={handleIndexChange}
-              />
-            )}
+          <div className="order-1 lg:order-2 lg:col-span-9">
+            <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-eyebrow text-ink">From the kitchen</p>
+                <h2
+                  id="kitchen-title"
+                  className="mt-4 font-display text-display-m text-ink"
+                >
+                  Begin at the table
+                </h2>
+              </div>
+              <Link href="/menu" className="link-lux text-caps text-ink">
+                Full menu <span aria-hidden="true">›</span>
+              </Link>
+            </div>
+
+            <div
+              className="relative w-full overflow-hidden"
+              style={{ height: CAROUSEL_HEIGHT }}
+            >
+              <div className="flex h-full gap-5">
+                <AnimatePresence mode="sync" initial={false}>
+                  {visible.map((dish, position) => (
+                    <CarouselCard
+                      key={dish.id}
+                      dish={dish}
+                      position={position}
+                    />
+                  ))}
+                </AnimatePresence>
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-40 bg-gradient-to-l from-surface to-transparent lg:block" />
+            </div>
+
+            {displayProgressIndicators ? (
+              <div className="mt-8 flex items-center gap-2">
+                {DISHES.map((_, index) => {
+                  const isActive = index === activeIndex;
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => handleIndexChange(index)}
+                      className="group relative h-px flex-1 overflow-hidden bg-hairline"
+                      aria-label={`Show ${DISHES[index].name}`}
+                    >
+                      <motion.div
+                        className="absolute inset-0 origin-left bg-ink"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: isActive ? 1 : 0 }}
+                        transition={{
+                          duration: isActive
+                            ? CAROUSEL_CONFIG.autoPlayInterval / 1000
+                            : 0.35,
+                          ease: isActive ? "linear" : "easeOut",
+                        }}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -122,104 +193,17 @@ export default function About1({
   );
 }
 
-function TeamMemberList({
-  activeIndex,
-  onIndexChange,
-}: {
-  activeIndex: number;
-  onIndexChange: (index: number) => void;
-}) {
-  return (
-    <div className="lg:col-span-3 order-2 lg:order-1">
-      <div className="space-y-4">
-        {TEAM_MEMBERS.map((member, index) => {
-          const isActive = index === activeIndex;
-
-          return (
-            <button
-              key={member.id}
-              onClick={() => onIndexChange(index)}
-              className="flex items-center gap-3 w-full text-left group"
-            >
-              <div
-                className={`w-2 h-2 rounded-full ${
-                  isActive
-                    ? "bg-neutral-900 dark:bg-white scale-100"
-                    : "bg-neutral-300 dark:bg-neutral-700 scale-75"
-                }`}
-              />
-              <span
-                className={`text-sm sm:text-base ${
-                  isActive
-                    ? "text-neutral-900 dark:text-white font-medium"
-                    : "text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-300"
-                }`}
-              >
-                {member.name}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="mb-8"
-    >
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-neutral-900 dark:text-white mb-1">
-        Meet the experts
-      </h1>
-      <p className="text-base tracking-tight text-neutral-500 dark:text-neutral-400">
-        The people who make it all happen
-      </p>
-    </motion.div>
-  );
-}
-
-function Carousel({ visibleMembers }: { visibleMembers: TeamMember[] }) {
-  return (
-    <div
-      className="relative w-full overflow-hidden"
-      style={{ height: CAROUSEL_HEIGHT }}
-    >
-      <div className="flex gap-6 h-full">
-        <AnimatePresence mode="sync" initial={false}>
-          {visibleMembers.map((member, position) => (
-            <CarouselCard key={member.id} member={member} position={position} />
-          ))}
-        </AnimatePresence>
-      </div>
-
-      <div className="hidden lg:block absolute top-0 right-0 w-[200px] h-full bg-linear-to-l from-white dark:from-neutral-950 to-transparent pointer-events-none" />
-    </div>
-  );
-}
-
-function CarouselCard({
-  member,
-  position,
-}: {
-  member: TeamMember;
-  position: number;
-}) {
+function CarouselCard({ dish, position }: { dish: Dish; position: number }) {
   const isActive = position === 0;
-  const isNext = position === 1;
 
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, x: 100 }}
+      initial={{ opacity: 0, x: 80 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{
         opacity: 0,
-        x: -100,
+        x: -80,
         transition: { duration: CAROUSEL_CONFIG.animationDuration },
       }}
       transition={{
@@ -230,135 +214,49 @@ function CarouselCard({
           ease: CAROUSEL_CONFIG.easing,
         },
       }}
-      className="shrink-0 w-[280px] sm:w-[320px] md:w-[400px] h-full"
+      className="h-full w-[260px] shrink-0 sm:w-[320px] md:w-[400px]"
     >
       <motion.div
-        className="relative w-full h-full rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900"
-        animate={{ padding: isActive ? "0px" : "4rem" }}
+        className="relative h-full w-full overflow-hidden bg-surface-2"
+        animate={{ padding: isActive ? 0 : 48 }}
         transition={{ duration: CAROUSEL_CONFIG.paddingDuration }}
       >
-        <motion.div
-          className="relative w-full h-full"
-          layout
-          transition={{
-            duration: 0.6,
-            ease: CAROUSEL_CONFIG.easing,
-          }}
-        >
-          <img
-            src={member.image}
-            alt={member.name}
-            className="w-full h-full object-cover rounded-lg"
+        <div className="relative h-full w-full">
+          <Image
+            src={dish.image}
+            alt={dish.name}
+            fill
+            className="object-cover"
+            sizes="400px"
           />
-
-          <div className="absolute inset-0 bg-linear-to-t from-white/80 via-white/30 to-transparent dark:from-black/80 dark:via-black/30 dark:to-transparent rounded-lg" />
-
-          <CardContent member={member} isActive={isActive} isNext={isNext} />
-        </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#14110C]/75 via-[#14110C]/15 to-transparent" />
+          <div
+            className={`absolute inset-x-0 bottom-0 ${
+              isActive ? "p-6 md:p-8" : "p-4"
+            }`}
+          >
+            <h3
+              className={`font-display text-paper ${
+                isActive
+                  ? "text-2xl md:text-3xl"
+                  : "text-lg md:text-xl"
+              }`}
+            >
+              {dish.name}
+            </h3>
+            <p
+              className={`mt-1 text-paper/75 ${
+                isActive ? "text-sm md:text-base" : "text-xs"
+              }`}
+            >
+              {dish.role}
+            </p>
+            {isActive ? (
+              <p className="mt-4 text-caps text-paper/80">{dish.price}</p>
+            ) : null}
+          </div>
+        </div>
       </motion.div>
     </motion.div>
-  );
-}
-
-function CardContent({
-  member,
-  isActive,
-  isNext,
-}: {
-  member: TeamMember;
-  isActive: boolean;
-  isNext: boolean;
-}) {
-  const paddingClasses = isActive
-    ? "p-5 sm:p-6 md:p-8"
-    : isNext
-      ? "p-4 sm:p-5"
-      : "p-3 sm:p-4";
-
-  const titleClasses = isActive
-    ? "text-xl sm:text-2xl md:text-3xl"
-    : isNext
-      ? "text-base sm:text-lg md:text-xl"
-      : "text-sm sm:text-base md:text-lg";
-
-  const roleClasses = isActive
-    ? "text-sm sm:text-base"
-    : isNext
-      ? "text-xs sm:text-sm"
-      : "text-xs";
-
-  const iconSize = isActive
-    ? "w-9 h-9 sm:w-10 sm:h-10"
-    : isNext
-      ? "w-8 h-8"
-      : "w-7 h-7";
-
-  const iconClasses = isActive ? "w-4 h-4" : isNext ? "w-3.5 h-3.5" : "w-3 h-3";
-
-  return (
-    <div className={`absolute bottom-0 left-0 right-0 ${paddingClasses}`}>
-      <h3
-        className={`font-bold text-neutral-900 dark:text-white mb-1 ${titleClasses}`}
-      >
-        {member.name}
-      </h3>
-      <p className={`text-neutral-800 dark:text-white/80 mb-4 ${roleClasses}`}>
-        {member.role}
-      </p>
-
-      <div className="flex items-center gap-2 sm:gap-3">
-        <a
-          href={member.github}
-          className={`rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors duration-200 flex items-center justify-center ${iconSize}`}
-          aria-label={`${member.name} Github`}
-        >
-          <Github
-            className={`text-neutral-900 dark:text-white ${iconClasses}`}
-          />
-        </a>
-        <a
-          href={member.mail}
-          className={`rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors duration-200 flex items-center justify-center ${iconSize}`}
-          aria-label={`${member.name} Mail`}
-        >
-          <Mail className={`text-neutral-900 dark:text-white ${iconClasses}`} />
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function ProgressIndicators({
-  activeIndex,
-  onIndexChange,
-}: {
-  activeIndex: number;
-  onIndexChange: (index: number) => void;
-}) {
-  return (
-    <div className="flex items-center gap-2 mt-6">
-      {TEAM_MEMBERS.map((_, index) => {
-        const isActive = index === activeIndex;
-
-        return (
-          <button
-            key={index}
-            onClick={() => onIndexChange(index)}
-            className="group relative h-1 flex-1 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden"
-            aria-label={`Go to team member ${index + 1}`}
-          >
-            <motion.div
-              className="absolute inset-0 bg-neutral-900 dark:bg-white origin-left"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: isActive ? 1 : 0 }}
-              transition={{
-                duration: isActive ? 5 : 0.3,
-                ease: isActive ? "linear" : "easeOut",
-              }}
-            />
-          </button>
-        );
-      })}
-    </div>
   );
 }

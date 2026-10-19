@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { images } from "@/lib/images";
 
 interface ContentItem {
   id: number;
   type: "image" | "text";
   content: string;
+  alt?: string;
   row: 1 | 2;
   size: "small" | "medium" | "large";
 }
@@ -14,85 +17,87 @@ const CONTENT_ITEMS: ContentItem[] = [
   {
     id: 1,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    content: images.mezze,
+    alt: "Mezze trio",
     row: 1,
     size: "large",
   },
   {
     id: 2,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+    content: images.lamb,
+    alt: "Lamb chops",
     row: 1,
     size: "medium",
   },
   {
     id: 3,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
+    content: images.lounge,
+    alt: "Dining room",
     row: 1,
     size: "large",
   },
   {
     id: 4,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+    content: images.shrimp,
+    alt: "Shrimp of the house",
     row: 1,
     size: "small",
   },
   {
     id: 5,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+    content: images.kebab,
+    alt: "Filet kebab",
     row: 2,
     size: "medium",
   },
   {
     id: 6,
     type: "text",
-    content: "We have a world-class team working to make this a reality.",
+    content: "Shared plates, charcoal heat.",
     row: 2,
     size: "large",
   },
   {
     id: 7,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
+    content: images.patio,
+    alt: "Evening patio",
     row: 2,
     size: "medium",
   },
   {
     id: 8,
     type: "image",
-    content:
-      "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80",
+    content: images.cuisine,
+    alt: "Bone-in ribeye",
     row: 2,
     size: "medium",
   },
 ];
 
 const SIZES = {
-  small: { width: "320px", height: "200px" },
-  medium: { width: "480px", height: "200px" },
-  large: { width: "640px", height: "200px" },
+  small: { width: "280px", height: "220px" },
+  medium: { width: "420px", height: "220px" },
+  large: { width: "560px", height: "220px" },
 };
 
 function ImageCard({ item }: { item: ContentItem }) {
   const dimensions = SIZES[item.size];
   return (
     <div
-      className="flex-shrink-0 rounded-[2.5rem] overflow-hidden shadow-2xl bg-neutral-200 dark:bg-neutral-800"
+      className="relative flex-shrink-0 overflow-hidden bg-surface-2"
       style={{ width: dimensions.width, height: dimensions.height }}
     >
-      <img
+      <Image
         src={item.content}
-        alt="Team"
-        className="w-full h-full object-cover"
+        alt={item.alt ?? ""}
+        fill
+        className="object-cover"
+        sizes="560px"
       />
     </div>
   );
@@ -102,10 +107,10 @@ function TextCard({ item }: { item: ContentItem }) {
   const dimensions = SIZES[item.size];
   return (
     <div
-      className="flex-shrink-0 rounded-[2.5rem] bg-neutral-100 dark:bg-neutral-900 shadow-2xl flex items-center justify-center px-12"
+      className="flex flex-shrink-0 items-center justify-center bg-surface-2 px-10"
       style={{ width: dimensions.width, height: dimensions.height }}
     >
-      <h3 className="text-4xl lg:text-5xl font-light tracking-tight text-neutral-900 dark:text-white text-center leading-tight">
+      <h3 className="max-w-[18ch] text-center font-display text-display-m text-ink leading-tight">
         {item.content}
       </h3>
     </div>
@@ -117,14 +122,18 @@ export default function About5() {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    let destroyed = false;
+    let lenis: { destroy: () => void; raf: (t: number) => void } | null = null;
+    let rafId = 0;
 
     const initLenis = async () => {
       const Lenis = (await import("lenis")).default;
+      if (destroyed || !containerRef.current) return;
 
-      const lenis = new Lenis({
-        wrapper: containerRef.current!,
-        content: containerRef.current!.querySelector(
-          ".scroll-content",
+      lenis = new Lenis({
+        wrapper: containerRef.current,
+        content: containerRef.current.querySelector(
+          ".scroll-content"
         ) as HTMLElement,
         orientation: "horizontal",
         gestureOrientation: "vertical",
@@ -134,75 +143,58 @@ export default function About5() {
         infinite: true,
       });
 
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-
-      return () => {
-        lenis.destroy();
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
       };
+      rafId = requestAnimationFrame(raf);
     };
 
-    const cleanup = initLenis();
+    void initLenis();
+
     return () => {
-      cleanup.then((fn) => fn && fn());
+      destroyed = true;
+      cancelAnimationFrame(rafId);
+      lenis?.destroy();
     };
   }, []);
 
   const row1Items = CONTENT_ITEMS.filter((item) => item.row === 1);
   const row2Items = CONTENT_ITEMS.filter((item) => item.row === 2);
-
-  const duplicatedRow1 = [
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-    ...row1Items,
-  ];
-  const duplicatedRow2 = [
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-    ...row2Items,
-  ];
+  const duplicatedRow1 = Array.from({ length: 8 }, () => row1Items).flat();
+  const duplicatedRow2 = Array.from({ length: 8 }, () => row2Items).flat();
 
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen bg-neutral-50 dark:bg-neutral-950 overflow-hidden"
+      aria-label="Kitchen gallery"
+      className="relative h-[min(100vh,56rem)] w-full overflow-hidden bg-surface-2"
     >
-      <div className="scroll-content h-full flex flex-col justify-center gap-8 py-12">
-        <div className="row-1 flex gap-8 pl-8 ml-0">
+      <div className="pointer-events-none absolute inset-x-0 top-10 z-10 section-x md:top-14">
+        <div className="container-lux text-center">
+          <p className="text-eyebrow text-ink">Cuisine</p>
+          <p className="mt-4 font-display text-display-m text-ink">
+            Through the kitchen
+          </p>
+        </div>
+      </div>
+      <div className="scroll-content flex h-full flex-col justify-center gap-6 py-24 md:gap-8">
+        <div className="row-1 ml-0 flex gap-5 pl-6 md:gap-6 md:pl-8">
           {duplicatedRow1.map((item, index) =>
             item.type === "image" ? (
               <ImageCard key={`${item.id}-${index}`} item={item} />
             ) : (
               <TextCard key={`${item.id}-${index}`} item={item} />
-            ),
+            )
           )}
         </div>
-
-        <div className="row-2 flex gap-8 pl-8 ml-32">
+        <div className="row-2 ml-16 flex gap-5 pl-6 md:ml-32 md:gap-6 md:pl-8">
           {duplicatedRow2.map((item, index) =>
             item.type === "image" ? (
               <ImageCard key={`${item.id}-${index}`} item={item} />
             ) : (
               <TextCard key={`${item.id}-${index}`} item={item} />
-            ),
+            )
           )}
         </div>
       </div>

@@ -89,13 +89,13 @@ export default function GalleryPage() {
         speed={0.4}
         fog={0.85}
         blur={0.5}
-        look={0}
-        hover={0}
-        wheel={false}
-        interactive={false}
+        look={0.35}
+        hover={0.4}
+        wheel
+        interactive
         captions
         focusOnClick
-        ariaLabel="Knife photo tunnel. Click a photo to view it."
+        ariaLabel="Knife photo tunnel. Scroll or drag to travel. Click a photo to view it."
       >
         <span className="sr-only">Knife gallery</span>
       </PassageGallery>
