@@ -9,30 +9,37 @@ import { cn } from "@/lib/utils";
 export default function NavBar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isGallery = pathname === "/gallery";
+  const immersive = isHome || isGallery;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (isGallery) {
+      setScrolled(false);
+      return;
+    }
     const onScroll = () =>
       setScrolled(window.scrollY > window.innerHeight * 0.75);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isGallery]);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   useEffect(() => {
+    if (isGallery && !open) return;
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      if (!isGallery) document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [open, isGallery]);
 
-  // Solid on interior pages, or after scrolling past the home hero
-  const solid = !isHome || scrolled || open;
+  // Transparent on home (until scroll) and always on gallery; solid elsewhere or when menu open
+  const solid = open || (!immersive ? true : isHome && scrolled);
   const light = !solid;
 
   return (
