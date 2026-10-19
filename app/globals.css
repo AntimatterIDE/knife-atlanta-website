@@ -40,8 +40,16 @@
   --color-smoke:      var(--knife-smoke);
   --color-ash:        var(--knife-ash);
   --color-charcoal:   var(--knife-charcoal);
+  --color-knife-black:    var(--knife-black);
+  --color-knife-charcoal: var(--knife-charcoal);
+  --color-knife-smoke:    var(--knife-smoke);
+  --color-knife-ash:      var(--knife-ash);
+  --color-knife-cream:    var(--knife-cream);
+  --color-knife-gold:     var(--knife-gold);
+  --color-knife-amber:    var(--knife-amber);
   --font-display: var(--font-cormorant);
   --font-sans:    var(--font-inter);
+  --font-body:    var(--font-inter);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

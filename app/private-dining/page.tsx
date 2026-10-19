@@ -1,40 +1,61 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import FadeUp from "@/components/FadeUp";
 import Section from "@/components/Section";
+import InquiryForm from "@/components/InquiryForm";
+import { images } from "@/lib/images";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Private Dining",
+  description: `Private dining and events at ${site.name} in Buckhead.`,
+};
 
 export default function PrivateDiningPage() {
   return (
-    <Section className="max-w-4xl mx-auto py-16 px-4 text-center">
-      <h1 className="text-knife-cream font-display text-6xl leading-tight">
-        Private Dining & Events
-      </h1>
-      <p className="text-knife-gold font-body text-lg mt-6 mb-8">
-        For an exclusive dining experience, our private dining rooms offer elegance and comfort, perfect for your special occasions or corporate events.
-      </p>
-      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-        <input
-          className="w-full p-3 border border-knife-gold bg-knife-black text-knife-cream rounded outline-none"
-          placeholder="Name"
-          type="text"
-          required
+    <>
+      <section className="relative min-h-[55vh] overflow-hidden">
+        <Image
+          src={images.privateDining}
+          alt="Private dining at Knife"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
-        <input
-          className="w-full p-3 border border-knife-gold bg-knife-black text-knife-cream rounded outline-none"
-          placeholder="Email"
-          type="email"
-          required
-        />
-        <textarea
-          className="w-full p-3 border border-knife-gold bg-knife-black text-knife-cream rounded outline-none"
-          placeholder="Your message"
-          rows={4}
-          required
-        />
-        <button
-          type="submit"
-          className="p-3 bg-knife-gold text-knife-black font-display font-bold w-full rounded"
-        >
-          Submit Inquiry
-        </button>
-      </form>
-    </Section>
+        <div className="overlay-dark absolute inset-0" />
+        <div className="relative z-10 flex min-h-[55vh] items-end section-padding pb-16">
+          <FadeUp>
+            <p className="text-caption text-knife-gold">Events</p>
+            <h1 className="mt-3 font-display text-headline text-knife-cream">
+              Private Dining
+            </h1>
+          </FadeUp>
+        </div>
+      </section>
+
+      <Section className="mx-auto max-w-3xl text-center">
+        <FadeUp>
+          <p className="text-body-lg text-knife-mist">
+            For an exclusive dining experience, our private rooms offer warmth
+            and quiet focus — ideal for celebrations, corporate dinners, and
+            evenings that deserve the full Knife treatment.
+          </p>
+          <p className="mt-4 text-knife-mist">
+            Or call{" "}
+            <a
+              href={`tel:${site.phoneHref}`}
+              className="text-knife-gold hover:underline"
+            >
+              {site.phone}
+            </a>
+          </p>
+        </FadeUp>
+
+        <FadeUp className="mt-12 text-left">
+          <InquiryForm />
+        </FadeUp>
+      </Section>
+    </>
   );
 }

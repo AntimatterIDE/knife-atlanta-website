@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function Parallax({
@@ -12,11 +12,15 @@ export default function Parallax({
   offset?: number;
   className?: string;
 }) {
-  const { scrollY } = useViewportScroll();
-  const y = useTransform(scrollY, [0, offset], [0, -offset * 0.5]);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [offset * 0.25, -offset * 0.25]);
 
   return (
-    <motion.div style={{ y }} className={className}>
+    <motion.div ref={ref} style={{ y }} className={className}>
       {children}
     </motion.div>
   );
