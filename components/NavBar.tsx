@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -57,15 +59,23 @@ export default function NavBar() {
       <div className="container-lux section-x flex h-[72px] items-center justify-between md:h-[88px]">
         <Link
           href="/"
-          className={cn(
-            "font-display text-[1.25rem] tracking-[0.02em] md:text-[1.5rem]",
-            light
-              ? "text-[#FBF9F4] [text-shadow:0_1px_18px_rgba(0,0,0,0.55)]"
-              : "text-ink"
-          )}
+          className="relative block h-8 w-[7.5rem] shrink-0 md:h-10 md:w-[9.5rem]"
           onClick={() => setOpen(false)}
+          aria-label={site.name}
         >
-          {site.name}
+          <Image
+            src={images.logoNav}
+            alt={site.name}
+            fill
+            priority
+            className={cn(
+              "object-contain object-left",
+              light
+                ? "drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)]"
+                : "brightness-0"
+            )}
+            sizes="152px"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

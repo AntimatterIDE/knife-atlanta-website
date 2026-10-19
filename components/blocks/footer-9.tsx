@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Instagram, Facebook } from "lucide-react";
@@ -153,12 +154,21 @@ export default function Footer9() {
 
         <motion.div
           variants={item}
-          aria-hidden="true"
-          className="mt-14 select-none sm:mt-20"
+          className="mt-14 flex justify-center sm:mt-20"
         >
-          <p className="text-center font-display text-[clamp(4rem,16vw,10rem)] leading-[0.9] tracking-[-0.03em] text-neutral-900">
-            Knife
-          </p>
+          <Link
+            href="/"
+            aria-label={site.name}
+            className="relative mx-auto block h-16 w-[min(100%,28rem)] sm:h-24 sm:w-[min(100%,36rem)] md:h-32 md:w-[min(100%,44rem)]"
+          >
+            <Image
+              src={images.logoNav}
+              alt={site.name}
+              fill
+              className="object-contain brightness-0"
+              sizes="(max-width: 768px) 90vw, 704px"
+            />
+          </Link>
         </motion.div>
 
         <motion.div

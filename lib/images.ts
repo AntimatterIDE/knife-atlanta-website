@@ -13,6 +13,7 @@ export const images = {
   happyHour: "/images/knife/happy-hour.jpg",
   queensCourt: "/images/knife/queens-court.jpg",
   logo: "/images/knife/logo.png",
+  logoNav: "/images/knife/logo-nav.png",
   gallery: [
     { src: "/images/knife/carousel-1.jpg", alt: "Braised lamb shank at Knife", tall: true },
     { src: "/images/knife/lounge.jpg", alt: "Dining room and bar", tall: false },
