@@ -2,176 +2,210 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
-import { images } from "@/lib/images";
-
-const slides = [
-  { src: images.lounge, alt: "Knife dining room and bar" },
-  { src: images.patio, alt: "Knife patio at night" },
-  { src: images.mezze, alt: "Mezze trio at Knife" },
-  { src: images.lamb, alt: "Lamb chops at Knife" },
-];
+import { images as knifeImages } from "@/lib/images";
 
 export default function Contact5() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const slideDuration = 5200;
+
+  const images = [
+    knifeImages.lounge,
+    knifeImages.patio,
+    knifeImages.mezze,
+    knifeImages.lamb,
+  ];
+
+  const slideDuration = 5000;
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setActiveSlide((current) => (current + 1) % slides.length);
+      setActiveSlide((current) => (current + 1) % images.length);
     }, slideDuration);
-    return () => clearTimeout(timeout);
-  }, [activeSlide]);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [activeSlide, images.length, slideDuration]);
 
   return (
-    <section className="relative min-h-[calc(100dvh-5.5rem)] w-full overflow-hidden bg-surface">
-      <div className="grid min-h-[calc(100dvh-5.5rem)] lg:grid-cols-2">
-        <div className="flex flex-col justify-center section-x py-16 md:py-24 lg:py-28">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-lg"
-          >
-            <p className="text-eyebrow text-ink">Contact</p>
-            <h1 className="mt-5 font-display text-display-l text-ink">
-              Visit Knife
-            </h1>
-            <p className="mt-6 max-w-[38ch] text-lead text-ink-muted">
-              Hours, dress code, and a quiet line to the house.
-            </p>
+    <section className="w-full bg-[#FBF9F4] px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-stretch">
+          <div className="flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="mb-12 lg:mb-20"
+            >
+              <h3 className="font-display text-2xl text-neutral-900 lowercase">
+                knife
+              </h3>
+            </motion.div>
 
-            <div className="mt-12 grid gap-10 sm:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="mb-12 lg:mb-16"
+            >
+              <h1 className="mb-6 font-display text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl lg:text-6xl">
+                Visit
+                <br />
+                our house.
+              </h1>
+              <p className="max-w-md text-lg leading-relaxed text-neutral-600">
+                Hours, dress code, and a quiet line for tables, private evenings,
+                and everything in between.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="mb-12 grid gap-8 sm:grid-cols-2 lg:mb-16"
+            >
               <div>
-                <p className="text-eyebrow text-ink-muted">Location</p>
-                <p className="mt-4 font-display text-[1.75rem] leading-tight text-ink">
+                <p className="mb-2 text-sm text-neutral-400">Location</p>
+                <p className="text-base text-neutral-900">
                   {site.address.line1}
+                  <br />
+                  United States
                 </p>
               </div>
-              <div className="space-y-7">
+
+              <div className="space-y-4">
                 <div>
-                  <p className="text-eyebrow text-ink-muted">Mail</p>
+                  <p className="mb-2 text-sm text-neutral-400">Mail</p>
                   <a
                     href={`mailto:${site.email}`}
-                    className="mt-3 block text-[15px] text-ink underline decoration-hairline underline-offset-4 transition-colors hover:decoration-ink"
+                    className="text-base text-neutral-900 transition-colors hover:text-neutral-600"
                   >
                     {site.email}
                   </a>
                 </div>
                 <div>
-                  <p className="text-eyebrow text-ink-muted">Phone</p>
+                  <p className="mb-2 text-sm text-neutral-400">Phone</p>
                   <a
                     href={`tel:${site.phoneHref}`}
-                    className="mt-3 block font-display text-[1.5rem] text-ink"
+                    className="text-base text-neutral-900 transition-colors hover:text-neutral-600"
                   >
                     {site.phone}
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="mt-12 space-y-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="grid gap-4 sm:grid-cols-2"
+            >
               <Link
                 href="/reservations"
-                className="group flex items-center justify-between bg-ink px-6 py-5 text-paper transition-opacity hover:opacity-90"
+                className="group flex items-center justify-between rounded-2xl bg-neutral-900 p-6 transition-transform hover:scale-[1.02]"
               >
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
-                    Tonight
-                  </p>
-                  <p className="mt-1 font-display text-2xl leading-none">
+                  <p className="mb-1 text-sm text-neutral-400">Tonight</p>
+                  <p className="text-lg font-medium text-white">
                     Reserve a table
                   </p>
                 </div>
-                <span
-                  aria-hidden
-                  className="font-display text-2xl transition-transform duration-500 group-hover:translate-x-1"
-                >
-                  ›
-                </span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 transition-colors group-hover:border-neutral-500">
+                  <ArrowRight className="h-5 w-5 text-white" />
+                </div>
               </Link>
+
               <Link
                 href="/private-dining"
-                className="group flex items-center justify-between border border-ink/15 bg-paper px-6 py-5 text-ink transition-colors hover:border-ink"
+                className="group flex items-center justify-between rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:border-neutral-300 hover:shadow-lg"
               >
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-ink-muted">
-                    Gatherings
-                  </p>
-                  <p className="mt-1 font-display text-2xl leading-none">
+                  <p className="text-lg font-medium text-neutral-900">
                     Private events
                   </p>
                 </div>
-                <span
-                  aria-hidden
-                  className="font-display text-2xl transition-transform duration-500 group-hover:translate-x-1"
-                >
-                  ›
-                </span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 transition-colors group-hover:border-neutral-400">
+                  <ArrowRight className="h-5 w-5 text-neutral-900" />
+                </div>
               </Link>
-            </div>
+            </motion.div>
 
-            <div className="mt-12 border-t border-hairline pt-8">
-              <p className="text-eyebrow text-ink">Dress code</p>
-              <p className="mt-4 text-[14px] leading-relaxed text-ink-muted">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.35 }}
+              className="mt-10 rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8"
+            >
+              <p className="mb-3 text-sm text-neutral-400">Dress code</p>
+              <p className="text-sm leading-relaxed text-neutral-600">
                 {site.dressCode}
               </p>
-              <p className="mt-6 text-caps text-ink">{site.ageRequirement}</p>
-              <p className="mt-2 text-[13px] text-ink-muted">
-                {site.serviceCharge}
+              <p className="mt-5 text-sm font-medium text-neutral-900">
+                {site.ageRequirement}
               </p>
+              <p className="mt-2 text-xs text-neutral-500">{site.serviceCharge}</p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative min-h-[28rem] lg:min-h-full"
+          >
+            <div className="absolute right-6 top-6 z-10 flex gap-2 sm:right-8 sm:top-8">
+              {images.map((_, index) => (
+                <div
+                  key={index}
+                  className="h-0.5 w-6 overflow-hidden rounded-full bg-neutral-900/30 backdrop-blur-sm sm:w-8"
+                >
+                  {index < activeSlide ? (
+                    <div className="h-full w-full bg-neutral-900" />
+                  ) : index === activeSlide ? (
+                    <motion.div
+                      key={`progress-${activeSlide}-${index}`}
+                      className="h-full bg-neutral-900"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{
+                        duration: slideDuration / 1000,
+                        ease: "linear",
+                      }}
+                      style={{ willChange: "width" }}
+                    />
+                  ) : (
+                    <div className="h-full w-0 bg-neutral-900" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="relative h-full min-h-[28rem] overflow-hidden rounded-3xl border border-neutral-200/50 lg:absolute lg:inset-0 lg:min-h-0">
+              <AnimatePresence initial={false} custom={activeSlide}>
+                <motion.img
+                  key={activeSlide}
+                  src={images[activeSlide]}
+                  alt={`Knife ${activeSlide + 1}`}
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "-100%" }}
+                  transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
+                  className="absolute h-full w-full object-cover"
+                />
+              </AnimatePresence>
             </div>
           </motion.div>
-        </div>
-
-        <div className="relative min-h-[50vh] lg:min-h-full">
-          <div className="absolute right-6 top-6 z-10 flex gap-2 sm:right-8 sm:top-8">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                aria-label={`Show image ${index + 1}`}
-                onClick={() => setActiveSlide(index)}
-                className="h-px w-8 overflow-hidden bg-paper/35"
-              >
-                {index < activeSlide ? (
-                  <span className="block h-full w-full bg-paper" />
-                ) : index === activeSlide ? (
-                  <motion.span
-                    key={`p-${activeSlide}`}
-                    className="block h-full bg-paper"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{
-                      duration: slideDuration / 1000,
-                      ease: "linear",
-                    }}
-                  />
-                ) : null}
-              </button>
-            ))}
-          </div>
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={activeSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={slides[activeSlide].src}
-                alt={slides[activeSlide].alt}
-                fill
-                priority={activeSlide === 0}
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </motion.div>
-          </AnimatePresence>
         </div>
       </div>
     </section>

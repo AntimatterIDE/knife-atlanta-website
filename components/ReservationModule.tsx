@@ -1,12 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { User, ChevronDown } from "lucide-react";
 import { site } from "@/lib/site";
-import { images } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 const partySizes = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -33,8 +31,8 @@ function tomorrowISO() {
   return d.toISOString().slice(0, 10);
 }
 
-const field =
-  "mt-3 w-full border-0 border-b border-hairline bg-transparent py-3 text-[1.05rem] text-ink outline-none transition-colors placeholder:text-ink-muted/50 focus:border-ink";
+const inputClass =
+  "px-3.5 py-2.5 rounded-md bg-white border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-900 w-full";
 
 export default function ReservationModule() {
   const [step, setStep] = useState<Step>("details");
@@ -78,268 +76,297 @@ export default function ReservationModule() {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-surface">
-      <div className="grid min-h-[calc(100dvh-5.5rem)] lg:grid-cols-2">
-        <div className="relative hidden min-h-full lg:block">
-          <Image
-            src={images.lounge}
-            alt="Dining room at Knife"
-            fill
-            className="object-cover"
-            sizes="50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#14110C]/70 via-[#14110C]/20 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-12">
-            <p className="text-eyebrow text-paper/70">Reservations</p>
-            <p className="mt-4 max-w-[16ch] font-display text-display-m text-paper">
-              Your table, held with care.
-            </p>
-          </div>
-        </div>
+    <section className="flex w-full min-h-[var(--rb-section-min-h,100vh)] items-start bg-[#FBF9F4] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="mx-auto flex w-full max-w-xl flex-col items-center text-center">
+        <AnimatePresence mode="wait">
+          {step === "details" && (
+            <motion.div
+              key="details"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35 }}
+              className="w-full"
+            >
+              <h1 className="font-display text-3xl font-normal leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl">
+                Request a{" "}
+                <em className="font-display italic font-normal">table</em>.
+              </h1>
+              <p className="mx-auto mt-4 max-w-md text-sm text-neutral-600 sm:text-base">
+                Choose your evening with us directly. We will hold your seats
+                and confirm by email.
+              </p>
 
-        <div className="flex flex-col justify-center section-x py-16 md:py-20">
-          <div className="mx-auto w-full max-w-md">
-            <AnimatePresence mode="wait">
-              {step === "details" && (
-                <motion.form
-                  key="details"
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setStep("confirm");
-                  }}
-                >
-                  <p className="text-eyebrow text-ink">Reservations</p>
-                  <h1 className="mt-5 font-display text-display-m text-ink md:text-display-l">
-                    Request a table
-                  </h1>
-                  <p className="mt-4 text-ink-muted">
-                    Choose your evening directly with the house.
-                  </p>
-
-                  <p className="mt-12 text-eyebrow text-ink-muted">Party size</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
+              <form
+                className="mt-10 flex w-full flex-col gap-5 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left sm:p-8"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setStep("confirm");
+                }}
+              >
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-medium text-neutral-900">
+                    Party size
+                  </label>
+                  <div className="flex flex-wrap gap-2">
                     {partySizes.map((n) => (
                       <button
                         key={n}
                         type="button"
                         onClick={() => setParty(n)}
                         className={cn(
-                          "flex h-11 w-11 items-center justify-center text-sm transition-colors duration-400",
+                          "flex h-10 w-10 items-center justify-center rounded-md border text-sm transition-colors",
                           party === n
-                            ? "bg-ink text-paper"
-                            : "bg-surface-2 text-ink hover:bg-hairline"
+                            ? "border-neutral-900 bg-neutral-900 text-white"
+                            : "border-neutral-200 bg-white text-neutral-900 hover:border-neutral-400"
                         )}
                       >
                         {n}
                       </button>
                     ))}
                   </div>
-                  <p className="mt-3 text-[13px] text-ink-muted">
-                    9 or more?{" "}
-                    <Link href="/private-dining" className="text-ink underline decoration-hairline underline-offset-4">
+                  <p className="mt-1 text-xs text-neutral-500">
+                    9+ guests?{" "}
+                    <Link
+                      href="/private-dining"
+                      className="underline underline-offset-2"
+                    >
                       Private events
                     </Link>
                   </p>
+                </div>
 
-                  <div className="mt-10 grid grid-cols-2 gap-6">
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-date">
-                        Date
-                      </label>
-                      <input
-                        id="res-date"
-                        type="date"
-                        min={minDate}
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        required
-                        className={field}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-time">
-                        Time
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="res-time"
-                          value={time}
-                          onChange={(e) => setTime(e.target.value)}
-                          className={`${field} appearance-none pr-8`}
-                        >
-                          {timeSlots.map((slot) => (
-                            <option key={slot} value={slot}>
-                              {slot}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-0 top-[calc(50%+0.4rem)] h-4 w-4 -translate-y-1/2 text-ink-muted" />
-                      </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      className="text-xs font-medium text-neutral-900"
+                      htmlFor="res-date"
+                    >
+                      Date
+                    </label>
+                    <input
+                      id="res-date"
+                      type="date"
+                      min={minDate}
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      required
+                      className={inputClass}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      className="text-xs font-medium text-neutral-900"
+                      htmlFor="res-time"
+                    >
+                      Time
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="res-time"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                        className={`${inputClass} cursor-pointer appearance-none pr-10`}
+                      >
+                        {timeSlots.map((slot) => (
+                          <option key={slot} value={slot}>
+                            {slot}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
                     </div>
                   </div>
+                </div>
 
-                  <div className="mt-8 space-y-8">
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-name">
-                        Name
-                      </label>
-                      <input
-                        id="res-name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        placeholder="Full name"
-                        className={field}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-email">
-                        Email
-                      </label>
-                      <input
-                        id="res-email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        placeholder="you@email.com"
-                        className={field}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-phone">
-                        Phone
-                      </label>
-                      <input
-                        id="res-phone"
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        required
-                        placeholder="(404) 000-0000"
-                        className={field}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-eyebrow text-ink-muted" htmlFor="res-notes">
-                        Notes
-                      </label>
-                      <textarea
-                        id="res-notes"
-                        rows={2}
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Allergies, celebration, seating"
-                        className={`${field} resize-none`}
-                      />
-                    </div>
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    className="text-xs font-medium text-neutral-900"
+                    htmlFor="res-name"
+                  >
+                    Name
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="res-name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      placeholder="Enter your full name*"
+                      className={`${inputClass} pr-10`}
+                    />
+                    <User className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
                   </div>
+                </div>
 
-                  <button type="submit" className="btn-border mt-12 w-full">
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    className="text-xs font-medium text-neutral-900"
+                    htmlFor="res-email"
+                  >
+                    Email address
+                  </label>
+                  <input
+                    id="res-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="Enter email address*"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    className="text-xs font-medium text-neutral-900"
+                    htmlFor="res-phone"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    id="res-phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    placeholder="Enter phone number*"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    className="text-xs font-medium text-neutral-900"
+                    htmlFor="res-notes"
+                  >
+                    Notes (optional)
+                  </label>
+                  <textarea
+                    id="res-notes"
+                    rows={3}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Allergies, celebration, seating preference"
+                    className={`${inputClass} resize-none`}
+                  />
+                </div>
+
+                <div className="flex flex-col items-center gap-3 pt-2">
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    type="submit"
+                    className="cursor-pointer rounded-md bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+                  >
                     Review request
-                  </button>
-                  <p className="mt-5 text-center text-[12px] text-ink-muted">
+                  </motion.button>
+                  <p className="text-center text-xs text-neutral-500">
                     Prefer OpenTable?{" "}
                     <a
                       href={site.reservationUrl}
-                      className="text-ink underline decoration-hairline underline-offset-4"
+                      className="underline text-neutral-700"
                       target="_blank"
                       rel="noreferrer"
                     >
                       Continue there
                     </a>
                   </p>
-                </motion.form>
-              )}
+                </div>
+              </form>
+            </motion.div>
+          )}
 
-              {step === "confirm" && (
-                <motion.div
-                  key="confirm"
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          {step === "confirm" && (
+            <motion.div
+              key="confirm"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35 }}
+              className="w-full"
+            >
+              <h2 className="font-display text-3xl font-normal tracking-tight text-neutral-900 sm:text-5xl">
+                Confirm your evening
+              </h2>
+              <div className="mt-10 w-full rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left sm:p-8">
+                <dl className="space-y-4 text-sm">
+                  {[
+                    ["Party", `${party} guests`],
+                    ["Date", date],
+                    ["Time", time],
+                    ["Name", name],
+                    ["Email", email],
+                    ["Phone", phone],
+                    ...(notes ? [["Notes", notes] as const] : []),
+                  ].map(([k, v]) => (
+                    <div key={k} className="flex justify-between gap-4">
+                      <dt className="text-neutral-500">{k}</dt>
+                      <dd className="text-right text-neutral-900">{v}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <form
+                  onSubmit={submitReservation}
+                  className="mt-8 flex flex-col gap-3 sm:flex-row"
                 >
-                  <p className="text-eyebrow text-ink">Confirm</p>
-                  <h2 className="mt-5 font-display text-display-m text-ink">
-                    Your evening
-                  </h2>
-                  <dl className="mt-10 space-y-5 border-y border-hairline py-8 text-[15px]">
-                    {[
-                      ["Party", `${party} guests`],
-                      ["Date", date],
-                      ["Time", time],
-                      ["Name", name],
-                      ["Email", email],
-                      ["Phone", phone],
-                      ...(notes ? [["Notes", notes] as const] : []),
-                    ].map(([k, v]) => (
-                      <div key={k} className="flex justify-between gap-6">
-                        <dt className="text-ink-muted">{k}</dt>
-                        <dd className="text-right text-ink">{v}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <form
-                    onSubmit={submitReservation}
-                    className="mt-8 flex flex-col gap-3 sm:flex-row"
+                  <button
+                    type="button"
+                    onClick={() => setStep("details")}
+                    className="flex-1 cursor-pointer rounded-md border border-neutral-300 bg-white px-6 py-2.5 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100"
                   >
-                    <button
-                      type="button"
-                      onClick={() => setStep("details")}
-                      className="btn-border flex-1"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="submit"
-                      className="btn-border flex-1 bg-ink text-paper hover:bg-transparent hover:text-ink"
-                    >
-                      Confirm
-                    </button>
-                  </form>
-                </motion.div>
-              )}
+                    Edit
+                  </button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="flex-1 cursor-pointer rounded-md bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+                  >
+                    Confirm reservation
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
+          )}
 
-              {step === "done" && (
-                <motion.div
-                  key="done"
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-center"
-                >
-                  <p className="text-eyebrow text-ink">Confirmed</p>
-                  <h2 className="mt-5 font-display text-display-m text-ink">
-                    We have your table
-                  </h2>
-                  <p className="mx-auto mt-5 max-w-sm text-ink-muted">
-                    {summary}
-                  </p>
-                  <p className="mt-10 font-display text-3xl text-ink">
-                    {confirmation}
-                  </p>
-                  <p className="mt-3 text-[13px] text-ink-muted">
-                    Keep this reference for your visit.
-                  </p>
-                  <div className="mt-10 flex flex-col items-center gap-4">
-                    <Link href="/menu" className="btn-border">
-                      View the menu
-                    </Link>
-                    <Link href="/" className="link-lux text-caps text-ink">
-                      Back home ›
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
+          {step === "done" && (
+            <motion.div
+              key="done"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="w-full"
+            >
+              <h2 className="font-display text-3xl font-normal tracking-tight text-neutral-900 sm:text-5xl">
+                We have your table
+              </h2>
+              <div className="mt-10 w-full rounded-2xl border border-neutral-200 bg-neutral-50 p-6 sm:p-8">
+                <p className="text-sm text-neutral-600">{summary}</p>
+                <p className="mt-6 font-display text-3xl text-neutral-900">
+                  {confirmation}
+                </p>
+                <p className="mt-2 text-xs text-neutral-500">
+                  Keep this reference for your visit.
+                </p>
+                <div className="mt-8 flex flex-col items-center gap-3">
+                  <Link
+                    href="/menu"
+                    className="rounded-md bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+                  >
+                    View the menu
+                  </Link>
+                  <Link
+                    href="/"
+                    className="text-xs text-neutral-500 underline underline-offset-2"
+                  >
+                    Back home
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
