@@ -38,20 +38,17 @@ export default function SitePreloader({
 
       {loading ? (
         <div
-          className="pointer-events-none fixed inset-0 z-[210] flex flex-col items-center justify-center gap-5"
+          className="pointer-events-none fixed inset-0 z-[210] flex items-center justify-center"
           aria-hidden
         >
           <Image
             src={images.logo}
             alt=""
-            width={160}
-            height={130}
+            width={200}
+            height={160}
             priority
-            className="h-[4.5rem] w-auto brightness-0 invert md:h-24"
+            className="h-20 w-auto brightness-0 invert md:h-28"
           />
-          <p className="font-display text-2xl tracking-[0.04em] text-[#EAE4D8] md:text-3xl">
-            Knife
-          </p>
         </div>
       ) : null}
 
