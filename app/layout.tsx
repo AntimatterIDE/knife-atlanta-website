@@ -33,7 +33,14 @@ export const metadata: Metadata = {
     siteName: site.fullName,
     locale: "en_US",
     type: "website",
-    images: [{ url: "/images/med-hero.jpg", width: 1200, height: 1600, alt: site.fullName }],
+    images: [
+      {
+        url: "/images/knife/lounge.jpg",
+        width: 2000,
+        height: 1369,
+        alt: site.fullName,
+      },
+    ],
   },
 };
 

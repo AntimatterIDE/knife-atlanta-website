@@ -8,99 +8,106 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `Meet the house behind ${site.fullName}.`,
+  description: `The house behind ${site.fullName}.`,
 };
 
 export default function StoryPage() {
   return (
-    <div className="damask pt-[88px]">
-      <section className="section-y section-x">
-        <FadeUp className="container-lux text-center">
-          <p className="text-eyebrow text-terracotta">About</p>
-          <h1 className="mt-6 font-display text-display-l text-ink md:text-display-xl">
-            Meet the team
+    <div className="bg-surface pt-[88px]">
+      <section aria-labelledby="about-title" className="section-y section-x">
+        <FadeUp className="container-lux mx-auto max-w-3xl text-center">
+          <p className="text-eyebrow text-ink">About</p>
+          <h1
+            id="about-title"
+            className="mt-6 font-display text-display-l text-ink"
+          >
+            Modern Mediterranean
           </h1>
         </FadeUp>
       </section>
 
-      <section className="section-x pb-24">
+      <section className="section-x pb-8">
         <FadeUp className="container-lux">
-          <div className="paper-frame overflow-hidden">
-            <div className="relative aspect-[16/9] w-full">
-              <Image
-                src={images.plated}
-                alt="Service at Knife"
-                fill
-                className="object-cover"
-                sizes="100vw"
-                priority
-              />
-            </div>
-            <div className="grid gap-10 px-6 py-12 md:grid-cols-2 md:gap-16 md:px-12 md:py-16">
-              <p className="text-ink-muted leading-relaxed">
-                The story starts with the Mediterranean table — shared plates,
-                charcoal heat, and rooms that invite the night to linger. At
-                Knife, that instinct meets Atlanta&apos;s energy: chic, social,
-                and never in a hurry.
-              </p>
-              <p className="text-ink-muted leading-relaxed">
-                {site.philosophy}
-              </p>
-            </div>
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <Image
+              src={images.lounge}
+              alt="Knife dining room and bar"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
           </div>
         </FadeUp>
       </section>
 
-      <section className="section-y section-x bg-surface">
-        <div className="container-lux">
-          <FadeUp className="flex items-center gap-6">
-            <p className="text-eyebrow shrink-0 text-terracotta">Get to know us</p>
-            <div className="rule-terra flex-1" />
-          </FadeUp>
-          <FadeUp>
-            <h2 className="mt-6 font-display text-display-l uppercase tracking-[-0.02em] text-ink md:text-display-xl">
-              Who are we
-            </h2>
-          </FadeUp>
+      <section className="section-y section-x">
+        <FadeUp className="container-lux mx-auto grid max-w-4xl gap-12 md:grid-cols-2 md:gap-20">
+          <p className="text-ink-muted leading-relaxed">
+            The story starts with the Mediterranean table — shared plates,
+            charcoal heat, and rooms that invite the night to linger. At Knife,
+            that instinct meets Atlanta&apos;s energy: chic, social, and never
+            in a hurry.
+          </p>
+          <p className="text-ink-muted leading-relaxed">{site.philosophy}</p>
+        </FadeUp>
+      </section>
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {site.team.map((member) => (
-              <FadeUp key={member.name}>
-                <div className="relative aspect-[3/4] overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 25vw"
-                  />
-                </div>
-                <p className="mt-4 font-display text-2xl text-ink">{member.name}</p>
-                <p className="mt-1 text-caps text-ink-muted">{member.role}</p>
-              </FadeUp>
-            ))}
-          </div>
+      <section
+        aria-labelledby="craft-img-title"
+        className="section-y section-x bg-surface-2"
+      >
+        <div className="container-lux grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+          <FadeUp className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src={images.shank}
+              alt="Braised lamb shank"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </FadeUp>
+          <FadeUp className="max-w-[46ch]">
+            <p className="text-eyebrow text-ink">The kitchen</p>
+            <h2
+              id="craft-img-title"
+              className="mt-6 font-display text-display-m text-ink"
+            >
+              Coastal plates, charcoal evenings.
+            </h2>
+            <p className="mt-6 text-ink-muted">
+              Mezze to open, kebabs over heat, pasta and seafood for the longer
+              table — food meant to be shared, not staged.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
-      <section className="section-y section-x bg-surface-2">
+      <section
+        aria-labelledby="philosophy-title"
+        className="section-y section-x bg-surface"
+      >
         <FadeUp className="container-lux mx-auto max-w-3xl text-center">
-          <p className="text-eyebrow text-terracotta">Our philosophy</p>
-          <div className="mt-8 font-display text-display-m text-ink">
+          <p id="philosophy-title" className="text-eyebrow text-ink">
+            Philosophy
+          </p>
+          <div className="mt-10 font-display text-display-m text-ink">
             <BlurHighlight
-              blurAmount={6}
-              inactiveOpacity={0.3}
-              highlightColor="#8c4a32"
+              blurAmount={5}
+              inactiveOpacity={0.4}
+              highlightColor="#1A1712"
               highlightedBits={["finer things", "unforgettable gatherings"]}
               viewportOptions={{ once: true, amount: 0.35 }}
             >
-              We believe dining is an art of atmosphere as much as flavor —
-              coastal plates, expertly crafted cocktails, and evenings that feel
-              effortless.
+              Dining is atmosphere as much as flavor — coastal plates, crafted
+              cocktails, and evenings that feel unhurried.
             </BlurHighlight>
           </div>
-          <Link href={site.reservationUrl} className="btn-terra mt-12">
-            Reserve a Table
+          <Link
+            href={site.reservationUrl}
+            className="btn-border mt-14"
+          >
+            Reserve a table
           </Link>
         </FadeUp>
       </section>

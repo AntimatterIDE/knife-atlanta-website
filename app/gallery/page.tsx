@@ -13,21 +13,24 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <div className="bg-surface pt-[88px]">
-      <section className="section-y section-x">
+      <section aria-labelledby="gallery-title" className="section-y section-x">
         <FadeUp className="container-lux text-center">
-          <p className="text-eyebrow text-terracotta">Gallery</p>
-          <h1 className="mt-5 font-display text-display-l text-ink">
+          <p className="text-eyebrow text-ink">Gallery</p>
+          <h1
+            id="gallery-title"
+            className="mt-6 font-display text-display-l text-ink"
+          >
             The room & the plate
           </h1>
         </FadeUp>
 
-        <div className="container-lux mt-16 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div className="container-lux mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {images.gallery.map((image, i) => (
             <FadeUp
               key={image.src + i}
               className={cn(
-                "mb-4 break-inside-avoid overflow-hidden",
-                image.tall && "sm:mt-6"
+                "overflow-hidden",
+                image.tall && "lg:row-span-1"
               )}
             >
               <div

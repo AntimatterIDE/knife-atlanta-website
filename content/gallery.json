@@ -1,12 +1,12 @@
 {
   "images": [
-    { "src": "/images/gallery-01.jpg", "alt": "Dry-aged ribeye on the grill", "w": 1600, "h": 2000 },
-    { "src": "/images/gallery-02.jpg", "alt": "Dining room at dusk", "w": 1600, "h": 1067 },
-    { "src": "/images/gallery-03.jpg", "alt": "Chef plating a steak", "w": 1600, "h": 2000 },
-    { "src": "/images/gallery-04.jpg", "alt": "Bar and bottle wall", "w": 1600, "h": 1067 },
-    { "src": "/images/gallery-05.jpg", "alt": "Tomahawk tableside carving", "w": 1600, "h": 2000 },
-    { "src": "/images/gallery-06.jpg", "alt": "Private dining table setting", "w": 1600, "h": 1067 },
-    { "src": "/images/gallery-07.jpg", "alt": "Seafood tower detail", "w": 1600, "h": 2000 },
-    { "src": "/images/gallery-08.jpg", "alt": "Exterior entrance at night", "w": 1600, "h": 1067 }
+    { "src": "/images/knife/carousel-1.jpg", "alt": "Braised lamb shank", "w": 1000, "h": 810 },
+    { "src": "/images/knife/lounge.jpg", "alt": "Dining room and bar", "w": 2000, "h": 1369 },
+    { "src": "/images/knife/carousel-3.jpg", "alt": "Mezze trio", "w": 1000, "h": 810 },
+    { "src": "/images/knife/carousel-4.jpg", "alt": "Lamb chops", "w": 1000, "h": 810 },
+    { "src": "/images/knife/carousel-2.jpg", "alt": "Filet kebab", "w": 1000, "h": 810 },
+    { "src": "/images/knife/patio.jpg", "alt": "Evening patio", "w": 2000, "h": 1333 },
+    { "src": "/images/knife/carousel-5.jpg", "alt": "Shrimp of the house", "w": 1000, "h": 810 },
+    { "src": "/images/knife/cuisine.jpg", "alt": "Bone-in ribeye", "w": 1500, "h": 1002 }
   ]
 }

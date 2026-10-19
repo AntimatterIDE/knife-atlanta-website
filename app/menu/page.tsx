@@ -12,25 +12,30 @@ export default function MenuPage() {
 
   return (
     <div className="bg-surface pt-[88px]">
-      <section className="section-y section-x">
-        <FadeUp className="container-lux mx-auto max-w-4xl text-center">
-          <p className="text-eyebrow text-terracotta">Menu</p>
-          <h1 className="mt-5 font-display text-display-l text-ink">Knife</h1>
-          <p className="mx-auto mt-5 max-w-xl text-ink-muted">
+      <section aria-labelledby="menu-title" className="section-y section-x">
+        <FadeUp className="container-lux mx-auto max-w-3xl text-center">
+          <p className="text-eyebrow text-ink">Menu</p>
+          <h1
+            id="menu-title"
+            className="mt-6 font-display text-display-l text-ink"
+          >
+            Knife
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-ink-muted">
             Modern Mediterranean — mezze, charcoal, pasta, and kebabs.
           </p>
         </FadeUp>
 
-        <div className="container-lux mx-auto mt-14 flex max-w-4xl flex-wrap justify-center gap-2 border-b border-hairline pb-4">
+        <div className="container-lux mx-auto mt-16 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-3 border-b border-hairline pb-6">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActive(cat.id)}
               className={cn(
-                "px-4 py-2 text-caps transition-colors",
+                "min-h-11 text-caps transition-colors duration-500",
                 active === cat.id
-                  ? "text-terracotta"
+                  ? "text-ink"
                   : "text-ink-muted hover:text-ink"
               )}
             >
@@ -40,21 +45,27 @@ export default function MenuPage() {
         </div>
 
         {current && (
-          <FadeUp key={current.id} className="container-lux mx-auto mt-12 max-w-3xl">
-            <p className="text-center text-ink-muted">{current.intro}</p>
-            <ul className="mt-10">
+          <FadeUp key={current.id} className="container-lux mx-auto mt-14 max-w-2xl">
+            {current.intro ? (
+              <p className="text-center text-ink-muted">{current.intro}</p>
+            ) : null}
+            <ul className="mt-12">
               {current.items.map((item) => (
                 <li
                   key={item.name}
-                  className="grid gap-2 border-b border-hairline py-7 md:grid-cols-[1fr_auto] md:items-baseline"
+                  className="grid gap-2 border-b border-hairline py-8 md:grid-cols-[1fr_auto] md:items-baseline"
                 >
                   <div>
-                    <h2 className="font-display text-2xl text-ink">{item.name}</h2>
+                    <h2 className="font-display text-[1.75rem] leading-[1.15] text-ink">
+                      {item.name}
+                    </h2>
                     {item.desc ? (
-                      <p className="mt-2 text-ink-muted">{item.desc}</p>
+                      <p className="mt-2 max-w-[52ch] text-ink-muted">
+                        {item.desc}
+                      </p>
                     ) : null}
                   </div>
-                  <p className="font-display text-xl text-terracotta">
+                  <p className="text-ink-muted">
                     {item.price === "MP" ? "MP" : `$${item.price}`}
                   </p>
                 </li>

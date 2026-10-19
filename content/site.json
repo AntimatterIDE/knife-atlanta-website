@@ -43,27 +43,5 @@
     { "label": "Gallery", "href": "/gallery" },
     { "label": "Private Events", "href": "/private-dining" },
     { "label": "Contact", "href": "/contact" }
-  ],
-  "team": [
-    {
-      "name": "Maria",
-      "role": "General Manager",
-      "image": "/images/chef-1.jpg"
-    },
-    {
-      "name": "Carlo",
-      "role": "Executive Chef",
-      "image": "/images/chef-2.jpg"
-    },
-    {
-      "name": "Antonietta",
-      "role": "Chef de Partie",
-      "image": "/images/chef.jpg"
-    },
-    {
-      "name": "Paolo",
-      "role": "Bar Director",
-      "image": "/images/chef-1.jpg"
-    }
   ]
 }
