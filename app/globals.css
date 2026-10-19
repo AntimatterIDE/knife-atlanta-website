@@ -7,6 +7,11 @@
   --ink: #1a1712;
   --ink-muted: #5a5348;
   --hairline: #d8d1c4;
+  --night: #14110c;
+  --night-2: #1c1812;
+  --dusk: #eae4d8;
+  --dusk-muted: #a89f90;
+  --dusk-line: rgba(234, 228, 216, 0.18);
 
   --font-display: var(--font-display-family);
   --font-sans: var(--font-sans-family);
@@ -24,6 +29,11 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-hairline: var(--hairline);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-dusk: var(--dusk);
+  --color-dusk-muted: var(--dusk-muted);
+  --color-dusk-line: var(--dusk-line);
   --font-display: var(--font-display-family);
   --font-sans: var(--font-sans-family);
 }
@@ -287,6 +297,14 @@ select.field-lux-box {
   .rise-lux-3 {
     animation: none;
   }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 640px) {

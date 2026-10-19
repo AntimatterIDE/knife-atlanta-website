@@ -6,7 +6,6 @@ import About10 from "@/components/blocks/about-10";
 import About1 from "@/components/blocks/about-1";
 import Features8 from "@/components/blocks/features-8";
 import Cta4 from "@/components/blocks/cta-4";
-import Cta2 from "@/components/blocks/cta-2";
 import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 
@@ -51,15 +50,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Dark statement */}
       <section
         aria-labelledby="statement-title"
-        className="section-y section-x bg-surface"
+        className="section-y section-x bg-night"
       >
-        <FadeUp className="container-lux mx-auto max-w-[40rem] text-center">
-          <p id="statement-title" className="text-eyebrow text-ink">
+        <FadeUp className="container-lux mx-auto max-w-[42rem] text-center">
+          <p id="statement-title" className="text-eyebrow text-dusk-muted">
             Atmosphere
           </p>
-          <p className="mt-12 font-display text-display-m text-ink text-balance md:text-display-l">
+          <p className="mt-12 font-display text-display-m text-dusk text-balance md:text-display-l">
             Step into Knife, where the essence of{" "}
             <em className="italic">modern Mediterranean</em> cuisine harmonizes
             with an atmosphere that exudes{" "}
@@ -70,7 +70,8 @@ export default function HomePage() {
 
       <About10 />
 
-      <section className="section-y section-x bg-surface-2">
+      {/* Dark cuisine feature */}
+      <section className="section-y section-x bg-night">
         <div className="container-lux grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
           <FadeUp className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
@@ -82,12 +83,15 @@ export default function HomePage() {
             />
           </FadeUp>
           <FadeUp className="max-w-[40ch]">
-            <p className="text-eyebrow text-ink">Cuisine</p>
-            <h2 className="mt-6 font-display text-display-m text-ink">
+            <p className="text-eyebrow text-dusk-muted">Cuisine</p>
+            <h2 className="mt-6 font-display text-display-m text-dusk">
               Shared plates, charcoal heat.
             </h2>
-            <p className="mt-6 text-ink-muted">{site.philosophy}</p>
-            <Link href="/menu" className="link-lux mt-10 text-caps text-ink">
+            <p className="mt-6 text-dusk-muted">{site.philosophy}</p>
+            <Link
+              href="/menu"
+              className="link-lux mt-10 text-caps text-dusk"
+            >
               View the menu <span aria-hidden="true">›</span>
             </Link>
           </FadeUp>
@@ -95,6 +99,8 @@ export default function HomePage() {
       </section>
 
       <About1 />
+
+      {/* Dark pillars */}
       <Features8 />
 
       <section
@@ -108,6 +114,7 @@ export default function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
+        <div className="absolute inset-0 bg-[#14110C]/45" />
         <div className="scrim-hero absolute inset-0" />
         <div className="relative z-10 flex min-h-screen items-end section-x pb-20 md:pb-28">
           <FadeUp className="container-lux max-w-2xl">
@@ -129,7 +136,40 @@ export default function HomePage() {
       </section>
 
       <Cta4 />
-      <Cta2 />
+
+      {/* Dark reserve */}
+      <section
+        aria-labelledby="reserve-title"
+        className="relative overflow-hidden bg-night-2 section-y section-x"
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-[0.12]">
+          <Image
+            src={images.lounge}
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        <FadeUp className="relative z-10 container-lux flex min-h-[50vh] flex-col items-start justify-center gap-10 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-eyebrow text-dusk-muted">Reservations</p>
+            <h2
+              id="reserve-title"
+              className="mt-6 font-display text-display-l text-dusk text-balance"
+            >
+              Request a table
+            </h2>
+            <p className="mt-5 max-w-md text-dusk-muted">
+              Intimate dinners and lively gatherings — reserved directly with
+              the house.
+            </p>
+          </div>
+          <Link href="/reservations" className="btn-border-light">
+            Reserve
+          </Link>
+        </FadeUp>
+      </section>
     </>
   );
 }
