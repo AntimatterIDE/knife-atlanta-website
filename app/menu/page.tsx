@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-interface MenuData { [key: string]: { id: string; label: string; intro: string; items: { name: string; desc: string; price: string; }[]; } }
+interface MenuData {
+[key: string]: {
+ id: string;
+ label: string;
+ intro: string;
+ items: { name: string; desc: string; price: string }[];
+ }
+}
+
+const menu: MenuData = menuData as unknown as MenuData;
   [key: string]: {
     id: string;
     label: string;
