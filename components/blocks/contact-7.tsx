@@ -12,14 +12,23 @@ export default function Contact7() {
   const [sent, setSent] = useState(false);
 
   return (
-    <section className="flex w-full min-h-[var(--rb-section-min-h,100vh)] items-start bg-[#FBF9F4] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section className="flex w-full min-h-[calc(100dvh-5.5rem)] items-start px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto flex w-full max-w-xl flex-col items-center text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="text-eyebrow text-[#EAE4D8]/70"
+        >
+          Private events
+        </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-          className="font-display text-3xl font-normal leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
+          transition={{ duration: 0.4, delay: 0.05 }}
+          className="mt-4 font-display text-3xl font-normal leading-[1.05] tracking-tight text-[#EAE4D8] [text-shadow:0_2px_40px_rgba(0,0,0,0.45)] sm:text-5xl md:text-6xl"
         >
           Plan an evening the{" "}
           <em className="font-display italic font-normal">quiet</em> way.
@@ -28,13 +37,13 @@ export default function Contact7() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="mt-4 max-w-md text-sm text-neutral-600 sm:text-base"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="mt-4 max-w-md text-sm text-[#EAE4D8]/70 sm:text-base"
         >
           Celebrations, corporate dinners, and large parties. Call{" "}
           <a
             href={`tel:${site.phoneHref}`}
-            className="underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900"
+            className="underline decoration-[#EAE4D8]/35 underline-offset-4 hover:decoration-[#EAE4D8]"
           >
             {site.phone}
           </a>{" "}
@@ -45,8 +54,8 @@ export default function Contact7() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-          className="mt-10 flex w-full flex-col gap-5 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left sm:p-8"
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="mt-10 flex w-full flex-col gap-5 rounded-2xl border border-white/20 bg-[#FBF9F4]/92 p-6 text-left shadow-[0_30px_80px_-40px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:p-8"
           onSubmit={(e) => {
             e.preventDefault();
             setSent(true);

@@ -10,7 +10,9 @@ export default function NavBar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isGallery = pathname === "/gallery";
-  const immersive = isHome || isGallery;
+  const isVaultPage =
+    pathname === "/reservations" || pathname === "/private-dining";
+  const immersive = isHome || isGallery || isVaultPage;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -38,8 +40,9 @@ export default function NavBar() {
     };
   }, [open, isGallery]);
 
-  // Transparent on home (until scroll) and gallery; solid elsewhere or when menu open
-  const solid = open || (!immersive ? true : isHome && scrolled);
+  // Transparent on home (until scroll), gallery, and vault form pages; solid elsewhere or when menu open
+  const solid =
+    open || (!immersive ? true : (isHome || isVaultPage) && scrolled);
   const light = !solid;
 
   return (

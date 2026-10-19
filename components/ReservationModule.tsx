@@ -76,7 +76,7 @@ export default function ReservationModule() {
   }
 
   return (
-    <section className="flex w-full min-h-[var(--rb-section-min-h,100vh)] items-start bg-[#FBF9F4] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section className="flex w-full min-h-[calc(100dvh-5.5rem)] items-start px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto flex w-full max-w-xl flex-col items-center text-center">
         <AnimatePresence mode="wait">
           {step === "details" && (
@@ -85,20 +85,21 @@ export default function ReservationModule() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.45 }}
               className="w-full"
             >
-              <h1 className="font-display text-3xl font-normal leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl">
+              <p className="text-eyebrow text-[#EAE4D8]/70">Reservations</p>
+              <h1 className="mt-4 font-display text-3xl font-normal leading-[1.05] tracking-tight text-[#EAE4D8] [text-shadow:0_2px_40px_rgba(0,0,0,0.45)] sm:text-5xl md:text-6xl">
                 Request a{" "}
                 <em className="font-display italic font-normal">table</em>.
               </h1>
-              <p className="mx-auto mt-4 max-w-md text-sm text-neutral-600 sm:text-base">
+              <p className="mx-auto mt-4 max-w-md text-sm text-[#EAE4D8]/70 sm:text-base">
                 Choose your evening with us directly. We will hold your seats
                 and confirm by email.
               </p>
 
               <form
-                className="mt-10 flex w-full flex-col gap-5 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left sm:p-8"
+                className="mt-10 flex w-full flex-col gap-5 rounded-2xl border border-white/20 bg-[#FBF9F4]/92 p-6 text-left shadow-[0_30px_80px_-40px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:p-8"
                 onSubmit={(e) => {
                   e.preventDefault();
                   setStep("confirm");
@@ -283,13 +284,13 @@ export default function ReservationModule() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.45 }}
               className="w-full"
             >
-              <h2 className="font-display text-3xl font-normal tracking-tight text-neutral-900 sm:text-5xl">
+              <h2 className="font-display text-3xl font-normal tracking-tight text-[#EAE4D8] [text-shadow:0_2px_40px_rgba(0,0,0,0.45)] sm:text-5xl">
                 Confirm your evening
               </h2>
-              <div className="mt-10 w-full rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-left sm:p-8">
+              <div className="mt-10 w-full rounded-2xl border border-white/20 bg-[#FBF9F4]/92 p-6 text-left shadow-[0_30px_80px_-40px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:p-8">
                 <dl className="space-y-4 text-sm">
                   {[
                     ["Party", `${party} guests`],
@@ -335,13 +336,13 @@ export default function ReservationModule() {
               key="done"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.5 }}
               className="w-full"
             >
-              <h2 className="font-display text-3xl font-normal tracking-tight text-neutral-900 sm:text-5xl">
+              <h2 className="font-display text-3xl font-normal tracking-tight text-[#EAE4D8] [text-shadow:0_2px_40px_rgba(0,0,0,0.45)] sm:text-5xl">
                 We have your table
               </h2>
-              <div className="mt-10 w-full rounded-2xl border border-neutral-200 bg-neutral-50 p-6 sm:p-8">
+              <div className="mt-10 w-full rounded-2xl border border-white/20 bg-[#FBF9F4]/92 p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:p-8">
                 <p className="text-sm text-neutral-600">{summary}</p>
                 <p className="mt-6 font-display text-3xl text-neutral-900">
                   {confirmation}
@@ -358,7 +359,7 @@ export default function ReservationModule() {
                   </Link>
                   <Link
                     href="/"
-                    className="text-xs text-neutral-500 underline underline-offset-2"
+                    className="text-xs text-[#EAE4D8]/70 underline underline-offset-2"
                   >
                     Back home
                   </Link>
