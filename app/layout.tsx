@@ -3,6 +3,7 @@ import { Instrument_Serif, Manrope } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
+import SitePreloader from "@/components/SitePreloader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -50,11 +51,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${instrument.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-surface text-ink antialiased">
-        <LenisProvider>
-          <NavBar />
-          <main>{children}</main>
-          <Footer />
-        </LenisProvider>
+        <SitePreloader>
+          <LenisProvider>
+            <NavBar />
+            <main>{children}</main>
+            <Footer />
+          </LenisProvider>
+        </SitePreloader>
       </body>
     </html>
   );

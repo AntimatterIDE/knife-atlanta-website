@@ -1,56 +1,102 @@
-import type { Metadata } from "next";
-import Image from "next/image";
+"use client";
+
+import dynamic from "next/dynamic";
 import FadeUp from "@/components/FadeUp";
 import { images } from "@/lib/images";
-import { site } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Gallery",
-  description: `Inside ${site.fullName}.`,
-};
+const PassageGallery = dynamic(
+  () => import("@/components/react-bits/passage-gallery"),
+  { ssr: false }
+);
+
+const galleryItems = [
+  {
+    src: images.lounge,
+    alt: "Dining room and bar at Knife",
+    title: "The room",
+  },
+  {
+    src: images.mezze,
+    alt: "Mezze trio with lavash",
+    title: "Mezze",
+  },
+  {
+    src: images.lamb,
+    alt: "Grilled lamb chops",
+    title: "Lamb chops",
+  },
+  {
+    src: images.kebab,
+    alt: "Filet kebab",
+    title: "Filet kebab",
+  },
+  {
+    src: images.shank,
+    alt: "Braised lamb shank",
+    title: "Lamb shank",
+  },
+  {
+    src: images.shrimp,
+    alt: "Shrimp of the house",
+    title: "Shrimp",
+  },
+  {
+    src: images.cuisine,
+    alt: "Bone-in ribeye",
+    title: "Ribeye",
+  },
+  {
+    src: images.patio,
+    alt: "Evening patio",
+    title: "The patio",
+  },
+  {
+    src: images.patioEvent,
+    alt: "Patio gathering",
+    title: "Gatherings",
+  },
+  {
+    src: images.happyHour,
+    alt: "Happy hour",
+    title: "Happy hour",
+  },
+];
 
 export default function GalleryPage() {
   return (
-    <div className="bg-surface pt-[88px]">
-      <section aria-labelledby="gallery-title" className="section-y section-x">
+    <div className="bg-surface">
+      <section className="section-x pt-[120px] pb-10 md:pt-[140px]">
         <FadeUp className="container-lux text-center">
           <p className="text-eyebrow text-ink">Gallery</p>
-          <h1
-            id="gallery-title"
-            className="mt-6 font-display text-display-l text-ink"
-          >
-            The room & the plate
+          <h1 className="mt-6 font-display text-display-l text-ink">
+            Through the room
           </h1>
+          <p className="mx-auto mt-5 max-w-md text-ink-muted">
+            Scroll or drag to move through the tunnel. Click a frame to bring it
+            forward.
+          </p>
         </FadeUp>
+      </section>
 
-        <div className="container-lux mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {images.gallery.map((image, i) => (
-            <FadeUp
-              key={image.src + i}
-              className={cn(
-                "overflow-hidden",
-                image.tall && "lg:row-span-1"
-              )}
-            >
-              <div
-                className={cn(
-                  "relative w-full",
-                  image.tall ? "aspect-[3/4]" : "aspect-[4/3]"
-                )}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={i < 2}
-                />
-              </div>
-            </FadeUp>
-          ))}
-        </div>
+      <section className="h-[85vh] min-h-[520px] w-full md:h-screen">
+        <PassageGallery
+          items={galleryItems}
+          backgroundColor="#14110C"
+          colors={["#6E665A", "#D8D1C4"]}
+          photoFill={0.55}
+          accentFill={0.04}
+          lineOpacity={0.1}
+          speed={0.35}
+          fog={0.85}
+          blur={0.6}
+          look={0.7}
+          hover={0.8}
+          captions
+          focusOnClick
+          ariaLabel="Knife photo tunnel. Scroll or drag to travel, click a photo to view it."
+        >
+          <span className="sr-only">Knife gallery</span>
+        </PassageGallery>
       </section>
     </div>
   );

@@ -1,21 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export default function NavBar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () =>
-      setScrolled(window.scrollY > window.innerHeight * 0.8);
+      setScrolled(window.scrollY > window.innerHeight * 0.75);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -24,7 +31,9 @@ export default function NavBar() {
     };
   }, [open]);
 
-  const solid = scrolled && !open;
+  // Solid on interior pages, or after scrolling past the home hero
+  const solid = !isHome || scrolled || open;
+  const light = !solid;
 
   return (
     <header
@@ -40,7 +49,9 @@ export default function NavBar() {
           href="/"
           className={cn(
             "font-display text-[1.25rem] tracking-[0.02em] md:text-[1.5rem]",
-            solid || open ? "text-ink" : "text-paper"
+            light
+              ? "text-[#FBF9F4] [text-shadow:0_1px_18px_rgba(0,0,0,0.55)]"
+              : "text-ink"
           )}
           onClick={() => setOpen(false)}
         >
@@ -54,7 +65,11 @@ export default function NavBar() {
               href={item.href}
               className={cn(
                 "link-lux text-caps",
-                solid ? "text-ink" : "text-paper"
+                light
+                  ? "text-[#FBF9F4] [text-shadow:0_1px_14px_rgba(0,0,0,0.5)]"
+                  : "text-ink",
+                pathname === item.href && !light && "opacity-100",
+                pathname === item.href && light && "opacity-100"
               )}
             >
               {item.label}
@@ -64,7 +79,9 @@ export default function NavBar() {
             href={site.reservationUrl}
             className={cn(
               "link-lux text-caps",
-              solid ? "text-ink" : "text-paper"
+              light
+                ? "text-[#FBF9F4] [text-shadow:0_1px_14px_rgba(0,0,0,0.5)]"
+                : "text-ink"
             )}
           >
             Reserve
@@ -75,7 +92,9 @@ export default function NavBar() {
           type="button"
           className={cn(
             "min-h-11 min-w-11 text-caps lg:hidden",
-            solid || open ? "text-ink" : "text-paper"
+            light
+              ? "text-[#FBF9F4] [text-shadow:0_1px_14px_rgba(0,0,0,0.5)]"
+              : "text-ink"
           )}
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
