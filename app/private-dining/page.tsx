@@ -15,7 +15,7 @@ export default function PrivateDiningPage() {
     <>
       <section
         aria-labelledby="events-hero"
-        className="relative min-h-[55vh] overflow-hidden"
+        className="relative min-h-[62vh] overflow-hidden md:min-h-[70vh]"
       >
         <Image
           src={images.patioEvent}
@@ -26,7 +26,7 @@ export default function PrivateDiningPage() {
           sizes="100vw"
         />
         <div className="scrim-hero absolute inset-0" />
-        <div className="relative z-10 flex min-h-[55vh] items-end section-x pb-16 md:pb-24">
+        <div className="relative z-10 flex min-h-[62vh] items-end section-x pb-16 pt-[88px] md:min-h-[70vh] md:pb-24 md:pt-[104px]">
           <FadeUp className="container-lux">
             <p className="text-eyebrow text-paper/80">Events</p>
             <h1

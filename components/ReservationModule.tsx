@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
+import { ChevronDown } from "lucide-react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +43,6 @@ export default function ReservationModule() {
   const [confirmation, setConfirmation] = useState("");
 
   const minDate = useMemo(() => new Date().toISOString().slice(0, 10), []);
-
   const summary = `${party} ${party === 1 ? "guest" : "guests"} · ${date} · ${time}`;
 
   function submitReservation(e: React.FormEvent) {
@@ -68,7 +68,6 @@ export default function ReservationModule() {
         .filter(Boolean)
         .join("\n")
     );
-    // Soft notify house email while keeping UX on-site
     window.open(`mailto:${site.email}?subject=${subject}&body=${body}`, "_blank");
     setStep("done");
   }
@@ -81,7 +80,7 @@ export default function ReservationModule() {
           <h1 className="mt-6 font-display text-display-l text-ink">
             Request a table
           </h1>
-          <p className="mx-auto mt-5 max-w-md text-ink-muted">
+          <p className="mx-auto mt-5 max-w-md text-lead text-ink-muted">
             Choose your evening with us directly. We will hold your seats and
             confirm by email.
           </p>
@@ -95,30 +94,30 @@ export default function ReservationModule() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16 border border-hairline bg-paper p-8 md:p-12"
+              className="panel-lux mt-14 p-8 md:mt-16 md:p-12"
               onSubmit={(e) => {
                 e.preventDefault();
                 setStep("confirm");
               }}
             >
-              <p className="text-caps text-ink">Party size</p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <p className="label-lux mb-0">Party size</p>
+              <div className="mt-5 flex flex-wrap gap-2.5">
                 {partySizes.map((n) => (
                   <button
                     key={n}
                     type="button"
                     onClick={() => setParty(n)}
                     className={cn(
-                      "min-h-11 min-w-11 border px-3 text-sm transition-colors duration-500",
+                      "flex h-12 w-12 items-center justify-center border text-sm transition-colors duration-500",
                       party === n
                         ? "border-ink bg-ink text-paper"
-                        : "border-hairline text-ink hover:border-ink"
+                        : "border-hairline bg-surface text-ink hover:border-ink"
                     )}
                   >
                     {n}
                   </button>
                 ))}
-                <span className="flex min-h-11 items-center px-2 text-[13px] text-ink-muted">
+                <span className="flex min-h-12 items-center px-2 text-[13px] text-ink-muted">
                   9+ →{" "}
                   <Link href="/private-dining" className="link-lux ml-1 text-ink">
                     Private events
@@ -126,9 +125,9 @@ export default function ReservationModule() {
                 </span>
               </div>
 
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <div className="mt-10 grid gap-8 sm:grid-cols-2">
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-date">
+                  <label className="label-lux" htmlFor="res-date">
                     Date
                   </label>
                   <input
@@ -138,31 +137,34 @@ export default function ReservationModule() {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
-                    className="mt-3 w-full border border-hairline bg-surface px-4 py-3 text-ink outline-none focus:border-ink"
+                    className="field-lux-box"
                   />
                 </div>
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-time">
+                  <label className="label-lux" htmlFor="res-time">
                     Time
                   </label>
-                  <select
-                    id="res-time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    className="mt-3 w-full appearance-none border border-hairline bg-surface px-4 py-3 text-ink outline-none focus:border-ink"
-                  >
-                    {timeSlots.map((slot) => (
-                      <option key={slot} value={slot}>
-                        {slot}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="res-time"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                      className="field-lux-box pr-10"
+                    >
+                      {timeSlots.map((slot) => (
+                        <option key={slot} value={slot}>
+                          {slot}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-10 space-y-5">
+              <div className="mt-10 space-y-8">
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-name">
+                  <label className="label-lux" htmlFor="res-name">
                     Name
                   </label>
                   <input
@@ -170,11 +172,12 @@ export default function ReservationModule() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="mt-3 w-full border border-hairline bg-surface px-4 py-3 text-ink outline-none focus:border-ink"
+                    placeholder="Full name"
+                    className="field-lux-box"
                   />
                 </div>
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-email">
+                  <label className="label-lux" htmlFor="res-email">
                     Email
                   </label>
                   <input
@@ -183,11 +186,12 @@ export default function ReservationModule() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="mt-3 w-full border border-hairline bg-surface px-4 py-3 text-ink outline-none focus:border-ink"
+                    placeholder="you@email.com"
+                    className="field-lux-box"
                   />
                 </div>
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-phone">
+                  <label className="label-lux" htmlFor="res-phone">
                     Phone
                   </label>
                   <input
@@ -196,13 +200,14 @@ export default function ReservationModule() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
-                    className="mt-3 w-full border border-hairline bg-surface px-4 py-3 text-ink outline-none focus:border-ink"
+                    placeholder="(404) 000-0000"
+                    className="field-lux-box"
                   />
                 </div>
                 <div>
-                  <label className="text-caps text-ink" htmlFor="res-notes">
+                  <label className="label-lux" htmlFor="res-notes">
                     Notes{" "}
-                    <span className="normal-case tracking-normal text-ink-muted">
+                    <span className="normal-case tracking-normal text-ink-muted/80">
                       (optional)
                     </span>
                   </label>
@@ -212,16 +217,16 @@ export default function ReservationModule() {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Allergies, celebration, seating preference"
-                    className="mt-3 w-full resize-none border border-hairline bg-surface px-4 py-3 text-ink outline-none placeholder:text-ink-muted focus:border-ink"
+                    className="field-lux-box resize-none"
                   />
                 </div>
               </div>
 
-              <button type="submit" className="btn-border mt-10 w-full">
+              <button type="submit" className="btn-border mt-12 w-full">
                 Review request
               </button>
 
-              <p className="mt-6 text-center text-[12px] text-ink-muted">
+              <p className="mt-7 text-center text-[12px] text-ink-muted">
                 Prefer OpenTable?{" "}
                 <a
                   href={site.reservationUrl}
@@ -242,45 +247,48 @@ export default function ReservationModule() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16 border border-hairline bg-paper p-8 md:p-12"
+              className="panel-lux mt-14 p-8 md:mt-16 md:p-12"
             >
               <p className="text-eyebrow text-ink">Confirm</p>
               <h2 className="mt-4 font-display text-display-m text-ink">
                 Your evening
               </h2>
-              <dl className="mt-10 space-y-4 border-t border-hairline pt-8 text-[15px]">
+              <dl className="mt-10 space-y-5 border-t border-hairline pt-8 text-[15px]">
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Party</dt>
-                  <dd>{party} guests</dd>
+                  <dd className="text-ink">{party} guests</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Date</dt>
-                  <dd>{date}</dd>
+                  <dd className="text-ink">{date}</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Time</dt>
-                  <dd>{time}</dd>
+                  <dd className="text-ink">{time}</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Name</dt>
-                  <dd>{name}</dd>
+                  <dd className="text-ink">{name}</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Email</dt>
-                  <dd className="truncate">{email}</dd>
+                  <dd className="truncate text-ink">{email}</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink-muted">Phone</dt>
-                  <dd>{phone}</dd>
+                  <dd className="text-ink">{phone}</dd>
                 </div>
                 {notes ? (
                   <div className="flex justify-between gap-6">
                     <dt className="text-ink-muted">Notes</dt>
-                    <dd className="max-w-[50%] text-right">{notes}</dd>
+                    <dd className="max-w-[50%] text-right text-ink">{notes}</dd>
                   </div>
                 ) : null}
               </dl>
-              <form onSubmit={submitReservation} className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <form
+                onSubmit={submitReservation}
+                className="mt-10 flex flex-col gap-3 sm:flex-row"
+              >
                 <button
                   type="button"
                   onClick={() => setStep("details")}
@@ -288,7 +296,10 @@ export default function ReservationModule() {
                 >
                   Edit
                 </button>
-                <button type="submit" className="btn-border flex-1 bg-ink text-paper hover:bg-transparent hover:text-ink">
+                <button
+                  type="submit"
+                  className="btn-border flex-1 bg-ink text-paper hover:bg-transparent hover:text-ink"
+                >
                   Confirm reservation
                 </button>
               </form>
@@ -301,7 +312,7 @@ export default function ReservationModule() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16 border border-hairline bg-paper p-8 text-center md:p-14"
+              className="panel-lux mt-14 p-8 text-center md:mt-16 md:p-14"
             >
               <p className="text-eyebrow text-ink">Confirmed</p>
               <h2 className="mt-5 font-display text-display-m text-ink">
@@ -311,7 +322,9 @@ export default function ReservationModule() {
                 {summary}. A copy has been prepared for{" "}
                 <span className="text-ink">{site.email}</span>.
               </p>
-              <p className="mt-8 font-display text-2xl text-ink">{confirmation}</p>
+              <p className="mt-8 font-display text-2xl text-ink">
+                {confirmation}
+              </p>
               <p className="mt-3 text-[13px] text-ink-muted">
                 Reference number — please keep this for your visit.
               </p>
@@ -327,7 +340,7 @@ export default function ReservationModule() {
           )}
         </AnimatePresence>
 
-        <p className="mx-auto mt-12 max-w-lg text-center text-[13px] text-ink-muted">
+        <p className="mx-auto mt-14 max-w-lg text-center text-[13px] text-ink-muted">
           {site.ageRequirement}. {site.serviceCharge}
         </p>
       </div>

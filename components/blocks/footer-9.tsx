@@ -83,10 +83,10 @@ export default function Footer9() {
         initial={reduce ? false : "hidden"}
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="relative z-10 mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-8 sm:py-28"
+        className="relative z-10 mx-auto w-full max-w-[1280px] px-6 py-28 sm:px-8 sm:py-36 lg:py-40"
       >
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_320px] lg:gap-20">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-[1fr_340px] lg:gap-24">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-14 md:grid-cols-3">
             {columns.map((column) => (
               <motion.nav
                 key={column.title}
@@ -94,10 +94,10 @@ export default function Footer9() {
                 aria-label={column.title}
                 className="min-w-0"
               >
-                <h3 className="mb-6 text-[11px] font-medium uppercase tracking-[0.22em] text-[#FBF9F4]/70">
+                <h3 className="mb-8 text-[11px] font-medium uppercase tracking-[0.22em] text-[#FBF9F4]/70">
                   {column.title}
                 </h3>
-                <ul className="space-y-4">
+                <ul className="space-y-5">
                   {column.links.map((link) => (
                     <li key={link.label}>
                       <Link
@@ -113,10 +113,10 @@ export default function Footer9() {
             ))}
           </div>
 
-          <motion.div variants={item} className="flex flex-col gap-6">
-            <div className="border border-[#FBF9F4]/20 bg-[#14110C]/40 p-6 backdrop-blur-sm">
+          <motion.div variants={item} className="flex flex-col gap-8">
+            <div className="border border-[#FBF9F4]/20 bg-[#14110C]/40 p-7 backdrop-blur-sm sm:p-8">
               <p className="text-eyebrow text-[#FBF9F4]/70">Dining room</p>
-              <ul className="mt-5 space-y-2">
+              <ul className="mt-6 space-y-3">
                 {site.hours.dining.map((row) => (
                   <li
                     key={row.days}
@@ -158,7 +158,7 @@ export default function Footer9() {
         <motion.div
           variants={item}
           aria-hidden="true"
-          className="mt-16 select-none sm:mt-24"
+          className="mt-24 select-none sm:mt-32"
         >
           <p className="font-display text-center text-[clamp(4.5rem,18vw,11rem)] leading-[0.9] tracking-[-0.02em] text-[#FBF9F4]/95">
             Knife
@@ -167,7 +167,7 @@ export default function Footer9() {
 
         <motion.div
           variants={item}
-          className="mt-10 flex flex-col gap-4 border-t border-[#FBF9F4]/15 pt-8 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-14 flex flex-col gap-5 border-t border-[#FBF9F4]/15 pt-10 sm:mt-16 sm:flex-row sm:items-center sm:justify-between sm:pt-12"
         >
           <p className="text-[11px] uppercase tracking-[0.14em] text-[#FBF9F4]/55">
             © {year} {site.fullName}
