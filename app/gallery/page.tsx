@@ -72,8 +72,7 @@ export default function GalleryPage() {
             Through the room
           </h1>
           <p className="mx-auto mt-5 max-w-md text-ink-muted">
-            Scroll or drag to move through the tunnel. Click a frame to bring it
-            forward.
+            The tunnel drifts on its own. Click a frame to bring it forward.
           </p>
         </FadeUp>
       </section>
@@ -86,14 +85,16 @@ export default function GalleryPage() {
           photoFill={0.55}
           accentFill={0.04}
           lineOpacity={0.1}
-          speed={0.35}
+          speed={0.4}
           fog={0.85}
-          blur={0.6}
-          look={0.7}
-          hover={0.8}
+          blur={0.5}
+          look={0}
+          hover={0}
+          wheel={false}
+          interactive={false}
           captions
           focusOnClick
-          ariaLabel="Knife photo tunnel. Scroll or drag to travel, click a photo to view it."
+          ariaLabel="Knife photo tunnel. Click a photo to view it."
         >
           <span className="sr-only">Knife gallery</span>
         </PassageGallery>

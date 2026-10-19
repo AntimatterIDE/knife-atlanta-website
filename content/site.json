@@ -43,5 +43,6 @@
     { "label": "Gallery", "href": "/gallery" },
     { "label": "Private Events", "href": "/private-dining" },
     { "label": "Contact", "href": "/contact" }
-  ]
+  ],
+  "reserveNav": { "label": "Reserve", "href": "/reservations" }
 }

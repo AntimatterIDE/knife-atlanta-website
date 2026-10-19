@@ -76,7 +76,7 @@ export default function NavBar() {
             </Link>
           ))}
           <Link
-            href={site.reservationUrl}
+            href="/reservations"
             className={cn(
               "link-lux text-caps",
               light
@@ -118,7 +118,7 @@ export default function NavBar() {
               </Link>
             ))}
             <Link
-              href={site.reservationUrl}
+              href="/reservations"
               className="link-lux text-caps text-ink"
               onClick={() => setOpen(false)}
             >

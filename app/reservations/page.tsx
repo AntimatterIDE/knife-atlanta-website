@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import ReservationModule from "@/components/ReservationModule";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Reservations",
-  description: `Reserve a table at ${site.fullName}.`,
+  description: `Reserve a table directly at ${site.fullName}.`,
 };
 
 export default function ReservationsPage() {
-  redirect(site.reservationUrl);
+  return (
+    <div className="bg-surface pt-[88px]">
+      <ReservationModule />
+    </div>
+  );
 }

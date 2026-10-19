@@ -1074,7 +1074,16 @@ const createPassage = (
   };
 
   const onMove = (event: PointerEvent) => {
-    if (!settingsRef.current.interactive) return;
+    const settings = settingsRef.current;
+    // Click-to-focus only: ignore freeroam drag / look / hover
+    if (!settings.interactive) {
+      if (press && press.id === event.pointerId) {
+        if (Math.hypot(event.clientX - press.x, event.clientY - press.y) > 10) {
+          press.moved = true;
+        }
+      }
+      return;
+    }
     if (event.pointerType !== "touch") {
       pointer.inside = true;
       locate(event);
@@ -1105,7 +1114,8 @@ const createPassage = (
 
   const onDown = (event: PointerEvent) => {
     const settings = settingsRef.current;
-    if (!settings.interactive || !event.isPrimary || event.button > 0) return;
+    if (!event.isPrimary || event.button > 0) return;
+    if (!settings.interactive && !settings.focusOnClick) return;
     press = {
       id: event.pointerId,
       x: event.clientX,
@@ -1117,13 +1127,13 @@ const createPassage = (
       touch: event.pointerType === "touch",
       samples: [],
     };
-    if (event.pointerType !== "touch") {
+    if (event.pointerType !== "touch" && settings.interactive) {
       try {
         stage.setPointerCapture(event.pointerId);
       } catch {}
     }
     window.clearTimeout(pressTimer);
-    if (!focus) {
+    if (settings.interactive && !focus) {
       pressTimer = window.setTimeout(() => {
         if (press && !press.moved && !focus) {
           boosting = true;
