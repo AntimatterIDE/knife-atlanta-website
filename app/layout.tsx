@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/interfaces";
 
 export const metadata: Metadata = {
   title: "Knife - Atlanta Steakhouse",
