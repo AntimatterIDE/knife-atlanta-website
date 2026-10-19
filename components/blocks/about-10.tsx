@@ -131,25 +131,15 @@ export default function About10() {
           ))}
         </motion.div>
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: reduce ? 0 : 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 flex flex-col gap-5 border-t border-hairline pt-8 sm:mt-16 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-14 border-t border-hairline pt-8 text-center font-display text-xl text-ink-muted sm:mt-16 sm:text-2xl"
         >
-          <p className="text-eyebrow text-ink-muted">The evening</p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            {notes.map((note) => (
-              <span
-                key={note}
-                className="font-display text-lg tracking-tight text-ink-muted"
-              >
-                {note}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+          {notes.join(" · ")}
+        </motion.p>
       </div>
     </section>
   );

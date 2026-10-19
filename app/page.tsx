@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "@/components/FadeUp";
 import HeroScale from "@/components/HeroScale";
-import { BlurHighlight } from "@/components/react-bits/blur-highlight";
 import About10 from "@/components/blocks/about-10";
-import About5 from "@/components/blocks/about-5";
 import About1 from "@/components/blocks/about-1";
 import Features8 from "@/components/blocks/features-8";
 import Cta4 from "@/components/blocks/cta-4";
@@ -57,29 +55,45 @@ export default function HomePage() {
         aria-labelledby="statement-title"
         className="section-y section-x bg-surface"
       >
-        <FadeUp className="container-lux mx-auto max-w-[44rem] text-center">
+        <FadeUp className="container-lux mx-auto max-w-[40rem] text-center">
           <p id="statement-title" className="text-eyebrow text-ink">
             Atmosphere
           </p>
-          <div className="mt-12 font-display text-display-m text-ink md:text-display-l">
-            <BlurHighlight
-              blurAmount={5}
-              inactiveOpacity={0.38}
-              highlightColor="#1A1712"
-              highlightedBits={[
-                "modern Mediterranean",
-                "chic sophistication",
-              ]}
-              viewportOptions={{ once: true, amount: 0.4 }}
-            >
-              {site.description}
-            </BlurHighlight>
-          </div>
+          <p className="mt-12 font-display text-display-m text-ink text-balance md:text-display-l">
+            Step into Knife, where the essence of{" "}
+            <em className="italic">modern Mediterranean</em> cuisine harmonizes
+            with an atmosphere that exudes{" "}
+            <em className="italic">chic sophistication</em>.
+          </p>
         </FadeUp>
       </section>
 
       <About10 />
-      <About5 />
+
+      <section className="section-y section-x bg-surface-2">
+        <div className="container-lux grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
+          <FadeUp className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src={images.mezze}
+              alt="Mezze trio with lavash"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </FadeUp>
+          <FadeUp className="max-w-[40ch]">
+            <p className="text-eyebrow text-ink">Cuisine</p>
+            <h2 className="mt-6 font-display text-display-m text-ink">
+              Shared plates, charcoal heat.
+            </h2>
+            <p className="mt-6 text-ink-muted">{site.philosophy}</p>
+            <Link href="/menu" className="link-lux mt-10 text-caps text-ink">
+              View the menu <span aria-hidden="true">›</span>
+            </Link>
+          </FadeUp>
+        </div>
+      </section>
+
       <About1 />
       <Features8 />
 

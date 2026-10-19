@@ -23,7 +23,7 @@ export default function Cta4() {
   return (
     <section
       aria-labelledby="hours-cta-title"
-      className="flex w-full flex-col items-center overflow-visible bg-surface section-x"
+      className="flex w-full flex-col items-center overflow-hidden bg-surface section-x"
     >
       <div className="container-lux mx-auto flex w-full items-center justify-center py-20 md:py-28">
         <div className="max-w-3xl space-y-8 text-center">

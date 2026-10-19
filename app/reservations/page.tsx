@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ReservationsPage() {
   return (
-    <div className="bg-surface pt-[96px] md:pt-[112px]">
+    <div className="bg-surface pt-[72px] md:pt-[88px]">
       <ReservationModule />
     </div>
   );

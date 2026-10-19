@@ -10,8 +10,7 @@ export default function NavBar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isGallery = pathname === "/gallery";
-  const isPrivateDining = pathname === "/private-dining";
-  const immersive = isHome || isGallery || isPrivateDining;
+  const immersive = isHome || isGallery;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -39,10 +38,8 @@ export default function NavBar() {
     };
   }, [open, isGallery]);
 
-  // Transparent on home (until scroll), gallery, and private-dining hero; solid elsewhere or when menu open
-  const solid =
-    open ||
-    (!immersive ? true : (isHome || isPrivateDining) && scrolled);
+  // Transparent on home (until scroll) and gallery; solid elsewhere or when menu open
+  const solid = open || (!immersive ? true : isHome && scrolled);
   const light = !solid;
 
   return (
