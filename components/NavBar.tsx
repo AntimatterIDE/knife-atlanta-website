@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { images } from "@/lib/images";
+import LogoMark from "@/components/LogoMark";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -59,22 +58,16 @@ export default function NavBar() {
       <div className="container-lux section-x flex h-[72px] items-center justify-between md:h-[88px]">
         <Link
           href="/"
-          className="relative block h-8 w-[7.5rem] shrink-0 md:h-10 md:w-[9.5rem]"
+          className="block shrink-0"
           onClick={() => setOpen(false)}
           aria-label={site.name}
         >
-          <Image
-            src={images.logoNav}
-            alt={site.name}
-            fill
+          <LogoMark
             priority
-            className={cn(
-              "object-contain object-left",
-              light
-                ? "drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)]"
-                : "brightness-0"
-            )}
-            sizes="152px"
+            decorative
+            invert={light}
+            glow={light}
+            heightClass="h-8 w-auto md:h-10"
           />
         </Link>
 

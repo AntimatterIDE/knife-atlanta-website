@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import LogoMark from "@/components/LogoMark";
 import { site } from "@/lib/site";
 import { images as knifeImages } from "@/lib/images";
 
@@ -41,9 +42,8 @@ export default function Contact5() {
               transition={{ duration: 0.4 }}
               className="mb-12 lg:mb-20"
             >
-              <h3 className="font-display text-2xl text-neutral-900 lowercase">
-                knife
-              </h3>
+              <h3 className="sr-only">{site.name}</h3>
+              <LogoMark heightClass="h-7 w-auto md:h-8" />
             </motion.div>
 
             <motion.div

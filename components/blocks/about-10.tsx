@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
+import LogoMark from "@/components/LogoMark";
 import { images } from "@/lib/images";
-import { site } from "@/lib/site";
+
 
 const founder = {
   src: images.lounge,
@@ -69,7 +70,11 @@ export default function About10() {
             className="mt-6 font-display text-display-l text-ink text-balance"
           >
             We are{" "}
-            <span className="text-ink-muted">{site.name}.</span>
+            <LogoMark
+              decorative
+              heightClass="mx-1 inline-block h-[0.85em] w-auto align-[-0.12em] opacity-70 md:h-[0.9em]"
+            />
+            .
           </motion.h2>
           <motion.p
             variants={item}

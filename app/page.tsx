@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "@/components/FadeUp";
 import HeroScale from "@/components/HeroScale";
+import LogoMark from "@/components/LogoMark";
 import About10 from "@/components/blocks/about-10";
 import About1 from "@/components/blocks/about-1";
 import Features8 from "@/components/blocks/features-8";
@@ -31,11 +32,13 @@ export default function HomePage() {
         <div className="absolute inset-x-0 bottom-0 section-x pb-20 md:pb-28">
           <div className="container-lux">
             <p className="rise-lux text-eyebrow text-paper/80">Atlanta</p>
-            <h1
-              id="hero-title"
-              className="rise-lux rise-lux-1 mt-5 font-display text-display-xl text-paper text-balance"
-            >
-              Knife
+            <h1 id="hero-title" className="rise-lux rise-lux-1 mt-5">
+              <LogoMark
+                priority
+                invert
+                glow
+                heightClass="h-14 w-auto md:h-20 lg:h-24"
+              />
             </h1>
             <p className="rise-lux rise-lux-2 mt-5 max-w-md text-lead text-paper/90">
               Modern Mediterranean. A house for the evening.
@@ -60,7 +63,13 @@ export default function HomePage() {
             Atmosphere
           </p>
           <p className="mt-12 font-display text-display-m text-dusk text-balance md:text-display-l">
-            Step into Knife, where the essence of{" "}
+            Step into{" "}
+            <LogoMark
+              decorative
+              invert
+              heightClass="mx-1 inline-block h-[0.85em] w-auto align-[-0.12em] md:h-[0.9em]"
+            />
+            , where the essence of{" "}
             <em className="italic">modern Mediterranean</em> cuisine harmonizes
             with an atmosphere that exudes{" "}
             <em className="italic">chic sophistication</em>.

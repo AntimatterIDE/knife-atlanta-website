@@ -4,7 +4,7 @@
   "city": "Atlanta",
   "tagline": "Modern Mediterranean",
   "description": "Step into Knife, where the essence of modern Mediterranean cuisine harmonizes with an atmosphere that exudes chic sophistication.",
-  "philosophy": "Our restaurant is more than just a dining destination; it's an experience crafted for those who appreciate the finer things in life. With a menu designed to tantalize your taste buds and an array of expertly crafted cocktails, Knife sets the stage for unforgettable gatherings—be it an intimate dinner for two or a lively celebration with friends.",
+  "philosophy": "Our restaurant is more than just a dining destination; it's an experience crafted for those who appreciate the finer things in life. With a menu designed to tantalize your taste buds and an array of expertly crafted cocktails, the house sets the stage for unforgettable gatherings—be it an intimate dinner for two or a lively celebration with friends.",
   "phone": "(404) 460-8623",
   "phoneHref": "+14044608623",
   "email": "reservations@knifeatlanta.com",
@@ -20,7 +20,7 @@
     "facebook": "https://facebook.com/knifeatlanta",
     "tiktok": "https://www.tiktok.com/@knifeatlanta"
   },
-  "dressCode": "Thank you for joining us at Knife Modern Mediterranean. We promise to deliver an unforgettable dining experience. In doing so, proper dress is required. Thank you for not wearing athletic shorts, jerseys, flip-flops, uncovered sports bras, excessively revealing clothing or exposed undergarments, or any clothing with offensive language or images. Men's shirts must have sleeves.",
+  "dressCode": "Thank you for joining us. We promise to deliver an unforgettable dining experience. In doing so, proper dress is required. Thank you for not wearing athletic shorts, jerseys, flip-flops, uncovered sports bras, excessively revealing clothing or exposed undergarments, or any clothing with offensive language or images. Men's shirts must have sleeves.",
   "ageRequirement": "Age requirement of 21 and up for entry",
   "serviceCharge": "All table totals exceeding $100 are subject to a 20% service charge.",
   "hours": {

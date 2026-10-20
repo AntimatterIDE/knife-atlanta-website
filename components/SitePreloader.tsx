@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { images } from "@/lib/images";
+import LogoMark from "@/components/LogoMark";
 
 export default function SitePreloader({
   children,
@@ -51,13 +50,11 @@ export default function SitePreloader({
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="relative flex flex-col items-center"
             >
-              <Image
-                src={images.logo}
-                alt=""
-                width={220}
-                height={176}
+              <LogoMark
                 priority
-                className="h-[4.5rem] w-auto brightness-0 invert md:h-28"
+                decorative
+                invert
+                heightClass="h-12 w-auto md:h-16"
               />
               <motion.div
                 className="mt-10 h-px w-16 origin-left bg-[#FBF9F4]/35"

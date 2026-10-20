@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Instagram, Facebook } from "lucide-react";
+import LogoMark from "@/components/LogoMark";
 import { site } from "@/lib/site";
 import { images } from "@/lib/images";
 
@@ -159,14 +159,11 @@ export default function Footer9() {
           <Link
             href="/"
             aria-label={site.name}
-            className="relative mx-auto block h-16 w-[min(100%,28rem)] sm:h-24 sm:w-[min(100%,36rem)] md:h-32 md:w-[min(100%,44rem)]"
+            className="mx-auto flex justify-center"
           >
-            <Image
-              src={images.logoNav}
-              alt={site.name}
-              fill
-              className="object-contain brightness-0"
-              sizes="(max-width: 768px) 90vw, 704px"
+            <LogoMark
+              decorative
+              heightClass="h-16 w-auto sm:h-24 md:h-32"
             />
           </Link>
         </motion.div>

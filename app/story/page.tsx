@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import About14 from "@/components/blocks/about-14";
 import FadeUp from "@/components/FadeUp";
+import LogoMark from "@/components/LogoMark";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,7 +23,15 @@ export default function StoryPage() {
             </h2>
           </div>
           <div className="space-y-6 text-ink-muted">
-            <p>{site.description}</p>
+            <p>
+              Step into{" "}
+              <LogoMark
+                decorative
+                heightClass="mx-1 inline-block h-[0.95em] w-auto align-[-0.12em]"
+              />
+              , where the essence of modern Mediterranean cuisine harmonizes
+              with an atmosphere that exudes chic sophistication.
+            </p>
             <p>{site.philosophy}</p>
           </div>
         </FadeUp>
